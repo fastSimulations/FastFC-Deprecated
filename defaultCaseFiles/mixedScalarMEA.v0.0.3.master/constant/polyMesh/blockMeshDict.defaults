@@ -1,0 +1,114 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1.e-6;
+
+vertices
+(
+// Block number 1 left (x1, x2, x3) --> (X,Y,Z) --> (Across MEA, Through MEA, Down the Channel)
+	(0 0 0) // 0
+	(5 0 0) // 1
+	(5 1.0 0) // 2
+	(0 1.0 0) // 3
+	(0 0 1.0) // 4
+	(5 0 1.0) // 5
+	(5 1.0 1.0) // 6
+	(0 1.0 1.0) // 7
+// Block number 2 middle  (x1, x2, x3) --> (X,Y,Z) --> (Across MEA, Through MEA, Down the Channel)
+	(15 0 0) // 8 
+	(15 1.0 0) // 9
+	(15 0 1.0) // 10
+	(15 1.0 1.0) // 11
+// Block number 3 right (x1, x2, x3) --> (X,Y,Z) --> (Across MEA, Through MEA, Down the Channel)
+	(25 0 0) // 12
+	(25 1.0 0) // 13
+	(25 0 1.0) // 14
+	(25 1.0 1.0) // 15
+// Block number 4 right (x1, x2, x3) --> (X,Y,Z) --> (Across MEA, Through MEA, Down the Channel)
+	(30 0 0) // 16
+	(30 1.0 0) // 17
+	(30 0 1.0) // 18
+	(30 1.0 1.0) // 19
+);
+
+blocks
+(
+	// Note that the order of connections is important in that the entry 1 to 2 is X, 2 to 3 is Y, 1 to 5 is Z 
+	hex (0 1 2 3 4 5 6 7) (128 1 1) simpleGrading (0.0625 1 1)
+	hex (1 8 9 2 5 10 11 6) (256 1 1) simpleGrading (16 1 1)
+	hex (8 12 13 9 10 14 15 11) (128 1 1) simpleGrading (0.125 1 1)
+	hex (12 16 17 13 14 18 19 15) (64 1 1) simpleGrading (8 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+	wall_l
+	{
+        	type patch;
+	        faces
+	        (
+			(0 4 7 3) // left wall	
+	        );
+	}
+
+    
+	wall_r
+	{
+		type patch;
+		faces
+		(
+			(16 18 19 17) // right wall
+		);
+	}
+
+	wall_empty
+	{
+	        type empty;
+	        faces
+	        (
+ 				// back faces
+	   			(0 1 2 3)
+				(1 8 9 2)
+				(8 12 13 9)
+				(12 16 17 13)
+				// front faces
+				(4 5 6 7)
+				(5 10 11 6)
+				(10 14 15 11)
+				(14 18 19 15)
+				// top faces
+				(3 7 6 2)
+				(2 6 11 9)
+				(9 11 15 13)
+				(13 15 19 17)
+				// bottom faces
+				(0 4 5 1)
+				(1 5 10 8)
+				(8 10 14 12)
+				(12 14 18 16)
+	        );
+	}
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

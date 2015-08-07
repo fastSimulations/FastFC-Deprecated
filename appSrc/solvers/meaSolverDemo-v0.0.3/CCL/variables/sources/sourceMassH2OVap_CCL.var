@@ -1,0 +1,17 @@
+sourceMassH2OVap_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	    (
+	      	"sourceMassH2OVap",
+		   	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("sourceMassH2OVapInit", dimensionSet( 1,-3,-1, 0, 0, 0, 0 ), 0.0)
+	)
+);

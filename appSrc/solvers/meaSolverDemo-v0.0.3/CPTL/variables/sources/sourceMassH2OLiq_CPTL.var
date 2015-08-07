@@ -1,0 +1,17 @@
+sourceMassH2OLiq_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	    (
+	      	"sourceMassH2OLiq",
+		   	runTime.timeName(),
+    	   	CPTLRegions[zoneID],
+    	   	IOobject::NO_READ,
+    		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("sourceMassH2OLiqInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.0)
+	)
+);

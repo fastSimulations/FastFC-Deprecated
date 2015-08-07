@@ -1,0 +1,17 @@
+condProtonEff_PMEM.set
+(
+    zoneID,
+    new volScalarField
+    (
+    	IOobject
+        (
+	  		"condProtonEff",
+	  		runTime.timeName(),
+	  		PMEMRegions[zoneID],
+	  		IOobject::READ_IF_PRESENT,
+	  		IOobject::AUTO_WRITE
+	 	),
+	 	PMEMRegions[zoneID], 
+	 	dimensionedScalar("condProtonEffInit", dimensionSet(-1, -3, 3, 0, 0, 2, 0), 0.)
+    )
+);

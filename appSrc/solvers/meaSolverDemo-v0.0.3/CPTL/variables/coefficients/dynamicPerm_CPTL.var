@@ -1,0 +1,17 @@
+dynamicPerm_CPTL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+    	IOobject
+     	(
+	       	"dynamicPerm",
+	   		runTime.timeName(),
+    	   	CPTLRegions[zoneID],
+    	   	IOobject::NO_READ,
+    	   	IOobject::AUTO_WRITE
+		),
+      	CPTLRegions[zoneID],
+		dimensionedScalar("dynamicPermInit", dimensionSet(0, 0, 1, 0, 0, 0, 0), 0.0)
+	)
+);

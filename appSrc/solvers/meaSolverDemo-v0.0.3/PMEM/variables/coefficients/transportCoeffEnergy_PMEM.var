@@ -1,0 +1,17 @@
+transportCoeffEnergy_PMEM.set
+(
+	zoneID,
+	new volScalarField
+    (
+  		IOobject
+		(
+			"transportCoeffEnergy",
+			runTime.timeName(),
+	       	PMEMRegions[zoneID],
+    	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+      	PMEMRegions[zoneID], 
+	    dimensionedScalar("transportCoeffEnergyInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.0)
+	)
+);

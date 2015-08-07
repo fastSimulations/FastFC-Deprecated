@@ -1,0 +1,83 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dictionaryReplacement
+{
+    potProton
+    {
+		internalField   uniform 0.;
+
+		boundaryField
+		{
+			MEALeft
+			{
+				type	empty;
+			}
+			MEARight
+			{
+				type	empty;
+			}
+			frontAndBack
+			{
+				type	empty;
+			}
+			PMEM_to_ACL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	condProtonEff;
+			}
+			PMEM_to_CCL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	condProtonEff;
+			}
+		}
+	}
+
+    T
+    {
+		internalField   uniform 348;
+
+		boundaryField
+		{
+			MEALeft
+			{
+				type	empty;
+			}
+			MEARight
+			{
+				type	empty;
+			}
+			frontAndBack
+			{
+				type	empty;
+			}
+			PMEM_to_ACL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffEnergy;
+			}
+			PMEM_to_CCL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffEnergy;
+			}
+		}
+	}
+
+}
+
+// ************************************************************************* //

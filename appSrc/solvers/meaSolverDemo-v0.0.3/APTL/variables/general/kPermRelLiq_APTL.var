@@ -1,0 +1,17 @@
+kPermRelLiq_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+		IOobject
+		(
+			"kPermRelLiq",
+		   	runTime.timeName(),
+       		APTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("kPermRelLiqInit", dimensionSet( 0, 2, 0, 0, 0, 0, 0 ), 0.0)
+	)
+);

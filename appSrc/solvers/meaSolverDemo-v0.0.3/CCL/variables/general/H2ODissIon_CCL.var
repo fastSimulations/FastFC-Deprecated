@@ -1,0 +1,17 @@
+H2ODissIon_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"H2ODissIon",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("H2ODissIonInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

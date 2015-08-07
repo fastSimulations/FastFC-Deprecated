@@ -1,0 +1,17 @@
+transportCoeffH2OVap_ACL.set
+(
+	zoneID,
+	new volScalarField
+    (
+  		IOobject
+		(
+			"transportCoeffH2OVap",
+			runTime.timeName(),
+	       	ACLRegions[zoneID],
+    	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+      	ACLRegions[zoneID], 
+	    dimensionedScalar("transportCoeffH2OVapInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.0)
+	)
+);

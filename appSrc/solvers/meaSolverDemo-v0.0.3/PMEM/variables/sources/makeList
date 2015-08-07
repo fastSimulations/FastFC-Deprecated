@@ -1,0 +1,10 @@
+rm -rf *.list
+rm -rf *~
+
+ls > defaultVariableList.list
+
+sed -i '/defaultVariableList.list/d' defaultVariableList.list
+sed -i '/makeList/d' defaultVariableList.list
+
+sed -i 's/^/#include </g' defaultVariableList.list
+sed -i 's/$/>/' defaultVariableList.list

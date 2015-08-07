@@ -1,0 +1,16 @@
+potProton_ACL.set
+(
+	zoneID,
+    new volScalarField
+    (
+    	IOobject
+        (
+        	"potProton",
+            runTime.timeName(),
+            ACLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+		),
+        ACLRegions[zoneID]                
+	)
+);

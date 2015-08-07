@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+maxSweep		 	500000;
+writeInterval		1;
+solverMethod		implicit;
+equationSystem		separate;
+implicitFactor		1.0;
+slopeStep			1.e-15;
+protonSweep		 	1;
+electronSweep    	1;
+THV					-1;  				// 1 uses THV, -1 uses BV 
+currentTolerance 	1e-6;
+
+// ************************************************************************* //

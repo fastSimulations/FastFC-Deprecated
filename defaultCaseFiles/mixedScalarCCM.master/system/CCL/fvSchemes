@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default         steadyState;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+divSchemes
+{
+    default         none;
+}
+
+laplacianSchemes
+{
+	laplacian(condElectronEff,potElectron)			Gauss harmonic corrected;  
+	laplacian(condProtonEff,potProton)			Gauss harmonic corrected;
+//	laplacian(condProtonEff,potProton)			Gauss quadraticLinearFit 2. corrected;
+//	laplacian(condProtonEff,potProton)			Gauss reverseLinear corrected;
+//	laplacian(condProtonEff,potProton)			Gauss quadraticFit 3.0 corrected;
+//	laplacian(condElectronEff,potElectron)			Gauss MUSCL electron_flux corrected; 
+//	laplacian(condProtonEff,potProton)			Gauss MUSCL proton_flux corrected;
+//	laplacian(condElectronEff,potElectron)			Gauss limitedLinear electron_flux 1.0 corrected;
+//	laplacian(condProtonEff,potProton)			Gauss limitedLinear proton_flux 1.0 corrected;
+}
+
+interpolationSchemes
+{
+    default         cubic;
+}
+
+snGradSchemes
+{
+    default         corrected;
+}
+
+fluxRequired
+{
+    default         yes;
+}
+
+
+// ************************************************************************* //

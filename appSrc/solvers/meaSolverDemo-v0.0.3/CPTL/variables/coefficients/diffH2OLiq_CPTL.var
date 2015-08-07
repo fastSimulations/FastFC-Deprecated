@@ -1,0 +1,18 @@
+diffH2OLiq_CPTL.set
+(
+	zoneID,
+	new volScalarField
+    	(
+	 	IOobject
+		(
+			"diffH2OLiq",
+			runTime.timeName(),
+       		CPTLRegions[zoneID],
+   	   		IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+      	),
+      	CPTLRegions[zoneID], 
+      	dimensionedScalar("diffH2OLiqInit", dimensionSet(0, 0, 1, 0, 0, 0, 0), 0.0)
+  	)
+);
+

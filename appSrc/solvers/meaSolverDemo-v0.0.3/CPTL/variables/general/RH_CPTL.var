@@ -1,0 +1,17 @@
+RH_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	   	(
+	      	"RH",
+		   	runTime.timeName(),
+          	CPTLRegions[zoneID],
+          	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("RHInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+    )
+);

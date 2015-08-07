@@ -1,0 +1,17 @@
+volFIon_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"volFIon",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("volFIonInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

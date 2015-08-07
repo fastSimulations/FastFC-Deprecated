@@ -1,0 +1,17 @@
+nameOfVariable_REGIONNAME.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"nameOfVariable",
+		   	runTime.timeName(),
+       		REGIONNAMERegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		REGIONNAMERegions[zoneID],
+		dimensionedScalar("nameOfVariableInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

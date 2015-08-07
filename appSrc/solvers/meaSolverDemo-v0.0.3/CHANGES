@@ -1,0 +1,20 @@
+v0.0.1
+	-Version derived from the simple CCM code that was used to transition to FOAM-Extend-3.1
+	-Includes the electron transport/proton transport equations
+	-Kinetics for the cathode are determined using a discrete electrode model with a Butler-Volmer formulation
+	-Kinetics for the anode are determined using a discrete electrode model with a Tafel-Heyrovsky-Volmer form.
+	-Overpotential is determined locally for both the anode and cathode
+	-OCV is constant and determined in the main file
+	-Transport properties are set in the transport coefficients directory and left constant
+v0.0.2
+	-Changed the convergence criteria to force iteration until anode and cathode are opposite but within tolerance
+	-Created the polarization curve output format to allow for paraview post-processing
+v0.0.3
+	-Added a "makeList" executable in order to make the variable lists in each sub-variable folder
+	-Changed all variables to be by default "AUTO_WRITE" and will revisit this later
+	-Converted naming convention in the CPTL to remove underscores
+	-Changed the variables and naming convections for (1)CPTL(2)CCL (partial)  
+
+TO DO
+	-CPTL has had variable names changed in setFields and fieldPointers and the actual files need to be fixed
+	-CCL working on the variable files

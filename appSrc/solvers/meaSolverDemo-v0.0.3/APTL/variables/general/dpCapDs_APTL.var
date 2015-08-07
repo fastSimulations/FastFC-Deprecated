@@ -1,0 +1,17 @@
+dpCapDs_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  		IOobject
+	    (
+	    	"dpCapDs",
+		   	runTime.timeName(),
+       		APTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("dpCapDsInit", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.0)
+	)
+);

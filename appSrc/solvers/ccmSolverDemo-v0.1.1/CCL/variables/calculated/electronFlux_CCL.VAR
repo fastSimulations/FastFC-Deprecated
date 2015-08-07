@@ -1,0 +1,17 @@
+electronFlux_CCL.set
+(
+	zoneID,
+	new surfaceScalarField
+	(
+  	 	IOobject
+		(
+	       	"electronFlux",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::NO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("electronFlux_init", dimensionSet( 0, 0, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

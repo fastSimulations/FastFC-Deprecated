@@ -1,0 +1,90 @@
+// Calculate the volumetric current production
+if(1==cathodeKineticsAgglomerate)
+{
+	sourceVolCurrentLeft_ =
+ 		butlerVolmerAgglomerate
+		(
+			sourceVolCurrent,
+			T,
+			sAC,
+			volFPore,
+			actPotLeft_,
+			diffO2Ion,
+			pMix,
+			xO2,
+			henrySolO2,
+			tIonFilm,
+			sVAgg,
+			diffO2IonAgg,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL,
+			radiusAggInput_CCL 
+		);	
+
+	sourceVolCurrentRight_ = 	
+		butlerVolmerAgglomerate
+		(
+			sourceVolCurrent,
+			T,
+			sAC,
+			volFPore,
+			actPotRight_,
+			diffO2Ion,
+			pMix,
+			xO2,
+			henrySolO2,
+			tIonFilm,
+			sVAgg,
+			diffO2IonAgg,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL,
+			radiusAggInput_CCL 
+		);		
+
+}
+else
+{
+	sourceVolCurrentLeft_ = 
+		butlerVolmerDiscrete
+		(
+ 			sourceVolCurrent,
+			T,
+			sAC,
+			actPotLeft_,
+			pMix,
+			xO2,
+			henrySolO2,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL
+		);
+
+	sourceVolCurrentRight_ = 
+		butlerVolmerDiscrete
+		(
+ 			sourceVolCurrent,
+			T,
+			sAC,
+			actPotRight_,
+			pMix,
+			xO2,
+			henrySolO2,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL
+		);
+}

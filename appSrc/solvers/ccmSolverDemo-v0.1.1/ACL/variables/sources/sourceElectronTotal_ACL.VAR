@@ -1,0 +1,17 @@
+sourceElectronTotal_ACL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"sourceElectronTotal",
+		  	runTime.timeName(),
+       	   	ACLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("sourceElectronTotalInit", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

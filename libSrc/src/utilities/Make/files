@@ -1,0 +1,5 @@
+derivedFvPatchFields = fvPatchFields
+
+$(derivedFvPatchFields)/regionModels/threeBlockRegions/threeBlockRegionProperties.C
+$(derivedFvPatchFields)/regionModels/fastRegions/fastRegionProperties.C
+LIB = $(FOAM_USER_LIBBIN)/libFASTutilities

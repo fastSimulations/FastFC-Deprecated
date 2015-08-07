@@ -1,0 +1,17 @@
+RH_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"RH",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("RHInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

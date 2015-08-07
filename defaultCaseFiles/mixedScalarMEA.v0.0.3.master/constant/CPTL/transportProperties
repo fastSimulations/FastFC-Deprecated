@@ -1,0 +1,36 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 	$$
+condElectronCarbonFiber			condElectronCarbonFiber		[  -1  -3   3   0   0   2   0 ]		800.;		// $$	Electronic conductivity of the PTL Fibers											[S/m]				$$
+volFractPore					volFractPore				[   0   0   0   0   0   0   0 ]		0.6;		// $$	Volume fraction of pore space (porosity) 											[-]					$$
+tortuosityPoreX					tortuosityPoreX				[   0   0   0   0   0   0   0 ]		3.75;		// $$	Tortuosity of the gas phase pore space in the x-dir 								[-] 				$$
+tortuosityPoreY					tortuosityPoreY				[   0   0   0   0   0   0   0 ]		3.75;		// $$	Tortuosity of the gas phase pore space in the y-dir 								[-] 				$$
+tortuosityPoreZ					tortuosityPoreZ				[   0   0   0   0   0   0   0 ]		3.75;		// $$	Tortuosity of the gas phase pore space in the z-dir				 					[-] 				$$
+tortuosityCarbonFiberX			tortuosityCarbonFiberX		[   0   0   0   0   0   0   0 ]		1.5;		// $$	Tortuosity of the electron conducting material in the x-dir 						[-] 				$$
+tortuosityCarbonFiberY			tortuosityCarbonFiberY		[   0   0   0   0   0   0   0 ]		1.5;		// $$	Tortuosity of the electron conducting material in the y-dir 						[-] 				$$
+tortuosityCarbonFiberZ			tortuosityCarbonFiberZ		[   0   0   0   0   0   0   0 ]		1.5;		// $$	Tortuosity of the electron conducting material in the z-dir 						[-] 				$$
+dryPermeabilityX				dryPermeabilityX			[   0   2   0   0   0   0   0 ]		8.e-13;		// $$	Permeability in the x-dir 															[m^2] 				$$
+dryPermeabilityY				dryPermeabilityY			[   0   2   0   0   0   0   0 ]		8.e-13;		// $$	Permeability in the y-dir 															[m^2] 				$$
+dryPermeabilityZ				dryPermeabilityZ			[   0   2   0   0   0   0   0 ]		8.e-13;		// $$	Permeability in the z-dir 															[m^2] 				$$
+condThermalCarbonFiber			condThermalCarbonFiber		[   1   1  -3  -1   0   0   0 ]		0.3;		// $$	Thermal conductivity 																[W/(m*K)]			$$
+contactAngle					contactAngle				[   0   0   0   0   0   0   0 ]		89.;		// $$	Liquid water contact angle 															[degrees]			$$
+evaporationRate					evaporationRate				[  -1   1   1   0   0   0   0 ]		1.e-6;		// $$	Liquid water evaporation rate 														[1/Pa s] 			$$
+condensationRate				condensationRate			[   0   0  -1   0   0   0   0 ]		1.e6;		// $$	Water vapour condensation rate 														[1/s] 				$$
+sCorrectOrderPerm				sCorrectOrderPerm			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Permeability							[-] 				$$
+sCorrectOrderDiff				sCorrectOrderDiff			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Diffusion								[-] 				$$
+// ************************************************************************* //

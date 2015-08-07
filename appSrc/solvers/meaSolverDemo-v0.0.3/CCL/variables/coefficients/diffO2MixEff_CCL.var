@@ -1,0 +1,17 @@
+diffO2MixEff_CCL.set
+(
+	zoneID,
+	new volScalarField
+    (
+  		IOobject
+		(
+			"diffO2MixEff",
+			runTime.timeName(),
+	       	CCLRegions[zoneID],
+    	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+      	CCLRegions[zoneID], 
+	    dimensionedScalar("diffO2MixEffInit", dimensionSet(0, 2,-1, 0, 0, 0, 0), 0.0)
+	)
+);

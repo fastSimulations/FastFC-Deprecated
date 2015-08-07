@@ -1,0 +1,17 @@
+reactionRateBVCathodic_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"reactionRateBVCathodic",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("reactionRateBVCathodic_init", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

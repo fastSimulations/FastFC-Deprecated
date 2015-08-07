@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 	$$
+condElectron					condElectron				[  -1  -3   3   0   0   2   0 ] 	100.;
+condProton						condProton					[  -1  -3   3   0   0   2   0 ] 	1.e-0;
+exchCurrentBV					exchCurrentBV	 			[   0  -3   0   0   0   1   0 ] 	1.e10;
+tortuositySuppX					tortuositySuppX				[   0   0   0   0   0   0   0 ] 	1.;
+tortuositySuppY					tortuositySuppY				[   0   0   0   0   0   0   0 ] 	1.;
+tortuositySuppZ					tortuositySuppZ				[   0   0   0   0   0   0   0 ] 	1.;
+tortuosityIonX					tortuosityIonX				[   0   0   0   0   0   0   0 ] 	1.;
+tortuosityIonY					tortuosityIonY				[   0   0   0   0   0   0   0 ] 	1.;
+tortuosityIonZ					tortuosityIonZ				[   0   0   0   0   0   0   0 ] 	1.;
+
+// *************************************************************************************************************************************************************************************************************************** //

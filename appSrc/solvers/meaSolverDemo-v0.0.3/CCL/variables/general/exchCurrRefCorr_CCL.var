@@ -1,0 +1,17 @@
+exchCurrRefCorr_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"exchCurrRefCorr",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("exchCurrRefCorrInit", dimensionSet(0,-2, 0, 0, 0, 1, 0), 0.)
+	)
+);

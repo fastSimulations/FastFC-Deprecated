@@ -1,0 +1,17 @@
+velAvg_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"velAvg",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("velAvgInit", dimensionSet(0, 1,-1, 0, 0, 0, 0), 0.)
+	)
+);

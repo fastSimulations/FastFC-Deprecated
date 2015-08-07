@@ -1,0 +1,17 @@
+pMixGrad_CCL.set
+(
+	zoneID,
+	new volVectorField
+	(
+  	 	IOobject
+	    (
+	      	"pMixGrad",
+		   	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedVector("pMixGradInit", dimensionSet( 1,-2,-2, 0, 0, 0, 0 ), vector::zero)
+	)
+);

@@ -1,0 +1,17 @@
+djSDs_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	    	"djSDs",
+		   	runTime.timeName(),
+       		CPTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("djSDsInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.)
+     )
+);

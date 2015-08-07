@@ -1,0 +1,5 @@
+./Allclean
+./caseSetup
+./decompose
+./parRun
+./reconstructRun

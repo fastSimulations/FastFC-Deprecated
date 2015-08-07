@@ -1,0 +1,5 @@
+#include <condProtonIon_PMEM.var>
+#include <condThermalIon_PMEM.var>
+#include <H2ODissIon_PMEM.var>
+#include <potProtonGrad_PMEM.var>
+#include <sourceEnergyOhmicHeating_PMEM.var>

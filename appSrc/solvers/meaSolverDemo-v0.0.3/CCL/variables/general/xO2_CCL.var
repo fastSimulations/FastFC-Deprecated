@@ -1,0 +1,17 @@
+xO2_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"xO2",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("xO2Init", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

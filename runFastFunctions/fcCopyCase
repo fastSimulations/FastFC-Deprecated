@@ -1,0 +1,90 @@
+#!/bin/sh
+#cd ${0%/*} || exit 1    # run from this directory
+set -ue
+# Source tutorial clean functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+echo
+echo -e "\e[1;34m---------- Copy the case file ----------\e[0m"
+
+currentDir=$PWD
+echo
+echo $currentDir
+
+# Test if directory location is valid
+if [[ ! -d $PWD/constant || ! -d $PWD/system ]]
+	then
+	{
+		echo "Current Path is not a valid case file"
+		echo
+		echo -e "\e[1;34m----------     ::ERROR::     ----------\e[0m"
+		echo
+	   	exit 1;
+	}
+	else
+	{
+		if [[ $PWD != *run* ]]
+		then
+		{
+			echo "Current case directory is not within $FOAM_RUN"
+			echo
+		echo -e "\e[1;34m----------     ::ERROR::     ----------\e[0m"
+			echo
+	   		exit 1;
+		}
+		fi
+	}
+fi
+
+# Force copy to the FOAM_RUN directory
+destDir=$FOAM_RUN
+
+usage() { echo "Usage:"; echo "$0 [-d CASENAME]" 1>&2; exit 1; }
+
+while getopts :d: arg; do
+	case $arg in
+	d)
+		newCase=$OPTARG
+		;;
+	:)
+		usage
+		;;
+	?) 
+		usage
+		;;
+	*)
+		usage
+		;;
+	esac
+done
+
+shift $((OPTIND-1))
+
+if [ -z "${newCase}" ]; then
+	usage
+fi
+
+#echo "Please enter a new case file name (no spaces):"
+#read newCase
+#test that new case file name doesn't exist
+if [[ -d $FOAM_RUN/$newCase ]]; then 
+	while [[ -d $FOAM_RUN/$newCase ]]
+	do 
+		echo "Case file already exists";	
+		exit 1;
+	done	
+fi
+
+#Clone case into new file
+echo
+echo "Cloning the new case::$newCase from case::${PWD##*/}"
+
+mkdir -p $FOAM_RUN/$newCase
+cp -vr $PWD/* $FOAM_RUN/$newCase
+# change directory to new case, clean it, and return
+cd $FOAM_RUN/$newCase
+fcCleanCase
+cd $currentDir
+
+echo
+echo -e "\e[1;34m---------- Case file copying complete ----------\e[0m"
+# ----------------------------------------------------------------- end-of-file

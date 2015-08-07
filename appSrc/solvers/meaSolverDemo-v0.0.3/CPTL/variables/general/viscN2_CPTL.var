@@ -1,0 +1,17 @@
+viscN2_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+      	(
+        	"viscN2",
+		   	runTime.timeName(),
+   		   	CPTLRegions[zoneID],
+   		   	IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("viscN2Init", dimensionSet( 1,-1,-1, 0, 0, 0, 0 ), 0.)
+	)
+);

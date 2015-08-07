@@ -1,0 +1,17 @@
+viscH2OVap_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"viscH2OVap",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("viscH2OVapInit", dimensionSet( 1,-1,-1, 0, 0, 0, 0 ), 0.)
+	)
+);

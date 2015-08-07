@@ -1,0 +1,17 @@
+massSupp_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"massSupp",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("massSuppInit", dimensionSet( 1,-2, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

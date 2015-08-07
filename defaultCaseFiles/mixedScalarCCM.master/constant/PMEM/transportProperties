@@ -1,0 +1,24 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *   //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 	$$
+condProton						condProton					[  -1  -3   3   0   0   2   0 ] 	1.e-0;
+tortuosityIonX					tortuosityIonX				[   0   0   0   0   0   0   0 ] 	1.;
+tortuosityIonY					tortuosityIonY				[   0   0   0   0   0   0   0 ] 	1.;
+tortuosityIonZ					tortuosityIonZ				[   0   0   0   0   0   0   0 ] 	1.;
+
+// *************************************************************************************************************************************************************************************************************************** //

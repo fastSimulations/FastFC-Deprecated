@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    potElectron
+    {
+//		solver			smoothSolver;
+//		smoother		DICGaussSeidel;
+//		solver			ICCG;
+		solver			PCG;
+		preconditioner	FDIC;
+//		preconditioner	DIC;
+//		preconditioner	none;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	potProton
+    {
+//		solver			smoothSolver;
+//		smoother		DICGaussSeidel;
+//		solver			ICCG;
+		solver			PCG;
+		preconditioner	FDIC;
+//		preconditioner	DIC;
+//		preconditioner	none;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+}
+
+relaxationFactors
+{
+	fields
+	{
+		potElectron					0.99;
+		potProton					0.99;
+	}
+	equations
+	{
+//		potProton				0.99;
+//		potElectron				0.99;
+	}
+}
+
+
+// ************************************************************************* //

@@ -1,0 +1,16 @@
+pMix_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"pMix",
+         	runTime.timeName(),
+            CPTLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+      	),
+        CPTLRegions[zoneID]                
+   	)
+);

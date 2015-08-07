@@ -1,0 +1,17 @@
+pH2OVap_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"pH2OVap",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("pH2OVapInit", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.)
+	)
+);

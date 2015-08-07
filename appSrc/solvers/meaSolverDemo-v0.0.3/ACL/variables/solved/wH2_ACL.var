@@ -1,0 +1,16 @@
+wH2_ACL.set
+(
+	zoneID,
+	new volScalarField
+	(
+       	IOobject
+       	(
+          	"wH2",
+           	runTime.timeName(),
+           	ACLRegions[zoneID],
+           	IOobject::MUST_READ,
+           	IOobject::AUTO_WRITE
+       	),
+       	ACLRegions[zoneID]                
+	)
+);

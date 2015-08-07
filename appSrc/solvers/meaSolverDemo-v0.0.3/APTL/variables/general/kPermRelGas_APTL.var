@@ -1,0 +1,17 @@
+kPermRelGas_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+		IOobject
+		(
+			"kPermRelGas",
+		   	runTime.timeName(),
+       		APTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("kPermRelGasInit", dimensionSet( 0, 2, 0, 0, 0, 0, 0 ), 0.0)
+	)
+);

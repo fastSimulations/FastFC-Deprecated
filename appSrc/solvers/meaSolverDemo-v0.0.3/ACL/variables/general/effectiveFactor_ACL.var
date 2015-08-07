@@ -1,0 +1,17 @@
+effectiveFactor_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"effectiveFactor",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("effectiveFactorInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

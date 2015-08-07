@@ -1,0 +1,16 @@
+potProton_CCL.set
+(
+	zoneID,
+    new volScalarField
+    (
+		IOobject
+        (
+        	"potProton",
+         	runTime.timeName(),
+           	CCLRegions[zoneID],
+           	IOobject::MUST_READ,
+           	IOobject::AUTO_WRITE
+    	),
+        CCLRegions[zoneID]                
+    )
+);

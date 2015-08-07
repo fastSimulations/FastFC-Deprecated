@@ -1,0 +1,17 @@
+pH2OSat_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	   	(
+	       	"pH2OSat",
+		   	runTime.timeName(),
+   		   	APTLRegions[zoneID],
+   		   	IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("pH2OSatInit", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.)
+	)
+);

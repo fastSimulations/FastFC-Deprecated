@@ -1,0 +1,17 @@
+xO2_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	    (
+	      	"xO2",
+		   	runTime.timeName(),
+       	  	CPTLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("xO2Init", dimensionSet(0, 0, 0, 0, 0, 0, 0),	0.)
+	)
+);

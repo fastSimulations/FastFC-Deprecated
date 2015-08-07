@@ -1,0 +1,17 @@
+sVAgg_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"sVAgg",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("sVAggInit", dimensionSet( 0,-1, 0, 0, 0, 0, 0), 0.)
+	)
+);

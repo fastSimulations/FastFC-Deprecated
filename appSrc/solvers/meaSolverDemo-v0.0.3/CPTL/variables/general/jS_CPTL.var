@@ -1,0 +1,17 @@
+jS_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	    	"jS",
+		   	runTime.timeName(),
+       		CPTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("jSInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.)
+     )
+);

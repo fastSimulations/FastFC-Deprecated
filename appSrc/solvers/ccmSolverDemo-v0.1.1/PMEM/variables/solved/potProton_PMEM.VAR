@@ -1,0 +1,16 @@
+potProton_PMEM.set
+(
+	zoneID,
+    new volScalarField
+    (
+    	IOobject
+        (
+        	"potProton",
+            runTime.timeName(),
+            PMEMRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+		),
+        PMEMRegions[zoneID]                
+	)
+);

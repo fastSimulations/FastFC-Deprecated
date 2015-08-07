@@ -1,0 +1,17 @@
+dpCapDs_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"dpCapDs",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("dpCapDsInit", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.)
+	)
+);

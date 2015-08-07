@@ -1,0 +1,55 @@
+FAST_LIB = $(WM_PROJECT_USER_DIR)/FastFC/libSrc
+
+EXE_INC = \
+	-Iphysics/reactionModels/tafelHeyrovskyVolmer\
+	-Iphysics/reactionModels/butlerVolmer\
+	-Iphysics/transportSolvers\
+	-IphysicalConstants\
+	-Iinitialization\
+	-IAPTL\
+	-IAPTL/fields\
+	-IAPTL/transport\
+	-IAPTL/variables/general\
+	-IAPTL/variables/solved\
+	-IAPTL/variables/sources\
+	-IAPTL/variables/coefficients\
+	-IACL\
+	-IACL/fields\
+	-IACL/transport\
+	-IACL/variables/general\
+	-IACL/variables/solved\
+	-IACL/variables/sources\
+	-IACL/variables/coefficients\
+	-IPMEM\
+	-IPMEM/fields\
+	-IPMEM/transport\
+	-IPMEM/variables/general\
+	-IPMEM/variables/solved\
+	-IPMEM/variables/sources\
+	-IPMEM/variables/coefficients\
+	-ICCL\
+	-ICCL/fields\
+	-ICCL/transport\
+	-ICCL/variables/general\
+	-ICCL/variables/solved\
+	-ICCL/variables/sources\
+	-ICCL/variables/coefficients\
+	-ICPTL\
+	-ICPTL/fields\
+	-ICPTL/transport\
+	-ICPTL/variables/general\
+	-ICPTL/variables/solved\
+	-ICPTL/variables/sources\
+	-ICPTL/variables/coefficients\
+	-IconvergenceChecking\
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+	-I$(LIB_SRC)/fvOptions/lnInclude \
+	-I$(FAST_LIB)/src/fields/lnInclude  \
+	-I$(FAST_LIB)/src/utilities/lnInclude 
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
+    -lmeshTools \
+    -lfiniteVolume \
+    -lFASTutilities \
+	-lFASTsrc 

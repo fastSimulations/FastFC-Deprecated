@@ -1,0 +1,17 @@
+sourceProtonTotal_PMEM.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"sourceProtonTotal",
+		  	runTime.timeName(),
+       	   	PMEMRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		PMEMRegions[zoneID],
+		dimensionedScalar("sourceProtonTotalInit", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

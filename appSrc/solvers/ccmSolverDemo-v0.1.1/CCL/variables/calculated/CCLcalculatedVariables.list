@@ -1,0 +1,8 @@
+#include "actPot_CCL.VAR"
+#include "protonFlux_CCL.VAR"
+#include "electronFlux_CCL.VAR"
+#include "reactionRateBVAnodic_CCL.VAR"
+#include "reactionRateBVCathodic_CCL.VAR"
+#include "reactionRateBVSlopeElectron_CCL.VAR"
+#include "reactionRateBVSlopeProton_CCL.VAR"
+#include "reactionRateBVSum_CCL.VAR"

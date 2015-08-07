@@ -1,0 +1,17 @@
+transportCoeffO2_CCL.set
+(
+	zoneID,
+	new volScalarField
+    (
+  		IOobject
+		(
+			"transportCoeffO2",
+			runTime.timeName(),
+	       	CCLRegions[zoneID],
+    	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+      	CCLRegions[zoneID], 
+	    dimensionedScalar("transportCoeffO2Init", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.0)
+	)
+);

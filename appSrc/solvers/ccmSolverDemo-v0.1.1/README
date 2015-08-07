@@ -1,0 +1,11 @@
+VERSION 1
+UPDATE: Feb 21, 2013
+- Segregated laplacian solver for electron and proton transport
+- Conductivities are constant and input via the named transport properties IO dictionary process
+UPDATE: March 11, 2013
+- Modified the naming of the internal fields from dimensionedScalar to volScalarField in order to facilitate the use of an <internal> boundary type
+UPDATE: March 11, 2013
+- Issues with the block to block solving, the post processing shows a "wiggle" in the boundaries in the three block problem, though this doesn't appear in the actual data in the file. More broadly there is an issue related to step wise assembly and solving of the matrices (ie. 3 block = 3 matrix calls) rather than one large one.
+UPDATE: March 13, 2013
+- Issue with the "wiggle" in the solution across the boundaries was due to a missing updateBoundaryCondition() call
+- Issue with the solution across the boundaries is also in part due to an issue with Paraview/ParaFoam not reading and plotting the boundaries on the interfaces when making line plots.

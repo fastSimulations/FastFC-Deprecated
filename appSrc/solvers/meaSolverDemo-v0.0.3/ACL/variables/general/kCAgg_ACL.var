@@ -1,0 +1,17 @@
+kCAgg_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"kCAgg",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("kCAggInit", dimensionSet( 0, 0,-1, 0, 0, 0, 0 ), 0.)
+	)
+);

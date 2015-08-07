@@ -1,0 +1,8 @@
+#!/bin/sh
+#cd ${0%/*} || exit 1    # run from this directory
+set -ue
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+solverApplication=`getApplication`
+xterm -geometry 100x50+0+0 -fn 9x18 -e "tail -F log.${solverApplication}"

@@ -1,0 +1,17 @@
+djSDs_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	    	"djSDs",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("djSDsInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.)
+     )
+);

@@ -1,0 +1,16 @@
+wH2OVap_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+     	IOobject
+       	(
+    		"wH2OVap",
+      		runTime.timeName(),
+         	CPTLRegions[zoneID],
+           	IOobject::MUST_READ,
+           	IOobject::AUTO_WRITE
+       	),
+      	CPTLRegions[zoneID]                
+	)
+);

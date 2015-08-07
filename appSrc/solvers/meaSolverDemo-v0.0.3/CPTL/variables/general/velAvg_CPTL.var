@@ -1,0 +1,17 @@
+velAvg_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+      	(
+	       	"velAvg",
+		   	runTime.timeName(),
+    	   	CPTLRegions[zoneID],
+    	   	IOobject::NO_READ,
+    		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("velAvgInit", dimensionSet(0, 1,-1, 0, 0, 0, 0), 0.0)
+	)
+);

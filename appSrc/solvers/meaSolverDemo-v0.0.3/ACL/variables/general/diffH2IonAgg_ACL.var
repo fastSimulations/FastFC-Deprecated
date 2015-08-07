@@ -1,0 +1,17 @@
+diffH2IonAgg_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"diffH2IonAgg",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("diffH2IonAggInit", dimensionSet( 0, 2,-1, 0, 0, 0, 0 ), 0.)
+	)
+);

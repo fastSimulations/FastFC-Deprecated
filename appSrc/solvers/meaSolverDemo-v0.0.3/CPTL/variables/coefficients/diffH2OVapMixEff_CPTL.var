@@ -1,0 +1,17 @@
+diffH2OVapMixEff_CPTL.set
+(
+	zoneID,
+	new volScalarField
+    	(
+	 	IOobject
+		(
+			"diffH2OVapMixEff",
+			runTime.timeName(),
+      		CPTLRegions[zoneID],
+  	   		IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+     	),
+      	CPTLRegions[zoneID], 
+     	dimensionedScalar("diffH2OVapMixEff", dimensionSet(0, 2,-1, 0, 0, 0, 0), 0.0)
+   	)
+);

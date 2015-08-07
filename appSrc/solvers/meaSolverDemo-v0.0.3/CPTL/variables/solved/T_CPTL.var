@@ -1,0 +1,16 @@
+T_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"T",
+            runTime.timeName(),
+            CPTLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+     	),
+        CPTLRegions[zoneID]                
+	)	
+);

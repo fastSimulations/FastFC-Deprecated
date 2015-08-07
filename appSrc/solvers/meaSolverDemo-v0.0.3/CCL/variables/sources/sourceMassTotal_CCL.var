@@ -1,0 +1,17 @@
+sourceMassTotal_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	  		"sourceMassTotal",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("sourceMassTotalInit", dimensionSet( 1,-3,-1, 0, 0, 0, 0 ), 0.0)
+	)
+);

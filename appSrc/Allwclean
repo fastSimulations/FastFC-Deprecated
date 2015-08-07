@@ -1,0 +1,21 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+wmakeCheckPwd "$WM_PROJECT_USER_DIR/FastFC/appSrc" || {
+    echo "Error: Current directory is not \$WM_PROJECT_USER_DIR/FastFC/appSrc"
+    echo "    The environment variables are inconsistent with the installation."
+    echo "    Check the OpenFOAM entries in your dot-files and source them."
+    exit 1
+}
+
+[ -n "$FOAM_USER_LIBBIN" ] || {
+    echo "Error: FOAM_USER_LIBBIN not set"
+    echo "    Check the OpenFOAM entries in your dot-files and source them."
+    exit 1
+}
+
+set -x
+
+wclean all solvers
+
+# ----------------------------------------------------------------- end-of-file

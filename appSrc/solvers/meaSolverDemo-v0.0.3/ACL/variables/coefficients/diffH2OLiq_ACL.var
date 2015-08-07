@@ -1,0 +1,18 @@
+diffH2OLiq_ACL.set
+(
+	zoneID,
+	new volScalarField
+    (
+	 	IOobject
+		(
+			"diffH2OLiq",
+			runTime.timeName(),
+       		ACLRegions[zoneID],
+   	   		IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+      	),
+      	ACLRegions[zoneID], 
+      	dimensionedScalar("diffH2OLiqInit", dimensionSet(0, 0, 1, 0, 0, 0, 0), 0.0)
+  	)
+);
+

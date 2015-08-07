@@ -1,0 +1,17 @@
+henrySolH2_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"henrySolH2",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("henrySolH2Init", dimensionSet( 1, 2,-2, 0,-1, 0, 0 ), 0.)
+	)
+);

@@ -1,0 +1,17 @@
+sourceEnergyEntropicHeating_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"sourceEnergyEntropicHeating",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("sourceEnergyEntropicHeatingInit", dimensionSet( 1,-1,-3, 0, 0, 0, 0 ), 0.)
+	)
+);

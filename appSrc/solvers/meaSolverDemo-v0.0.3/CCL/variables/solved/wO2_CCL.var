@@ -1,0 +1,16 @@
+wO2_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+       	IOobject
+       	(
+          	"wO2",
+           	runTime.timeName(),
+           	CCLRegions[zoneID],
+           	IOobject::MUST_READ,
+           	IOobject::AUTO_WRITE
+       	),
+       	CCLRegions[zoneID]                
+	)
+);

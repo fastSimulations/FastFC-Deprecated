@@ -1,0 +1,17 @@
+sourceProtonSlope_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"sourceProtonSlope",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("sourceProtonSlope_init", dimensionSet(-1,-5, 3, 0, 0, 2, 0 ), 0.0)
+	)
+);

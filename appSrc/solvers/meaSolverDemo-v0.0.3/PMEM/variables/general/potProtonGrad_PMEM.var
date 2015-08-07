@@ -1,0 +1,17 @@
+potProtonGrad_PMEM.set
+(
+	zoneID,
+	new volVectorField
+	(
+  	 	IOobject
+	    (
+	      	"potProtonGradGRAD",
+		   	runTime.timeName(),
+       	   	PMEMRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		PMEMRegions[zoneID],
+		dimensionedVector("potProtonGradInit", dimensionSet( 1, 1,-3, 0, 0,-1, 0 ), vector::zero)
+	)
+);

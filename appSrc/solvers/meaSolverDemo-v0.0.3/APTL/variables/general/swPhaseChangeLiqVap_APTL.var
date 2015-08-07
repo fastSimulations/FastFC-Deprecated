@@ -1,0 +1,17 @@
+swPhaseChangeLiqVap_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	    (
+	       	"swPhaseChangeLiqVap",
+		  	runTime.timeName(),
+       	   	APTLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("swPhaseChangeLiqVapInit", dimensionSet( 0, 0, 0, 0, 0, 0, 0 ), 0.)	
+	)
+);

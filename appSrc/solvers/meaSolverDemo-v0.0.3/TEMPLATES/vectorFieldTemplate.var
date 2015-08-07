@@ -1,0 +1,17 @@
+nameOfVariable_REGIONNAME.set
+(
+	zoneID,
+	new volVectorField
+	(
+  	 	IOobject
+	    (
+	      	"nameOfVariable",
+		   	runTime.timeName(),
+       	   	REGIONNAMERegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		REGIONNAMERegions[zoneID],
+		dimensionedVector("nameOfVariableInit", dimensionSet( 1,-2,-2, 0, 0, 0, 0 ), vector::zero)
+	)
+);

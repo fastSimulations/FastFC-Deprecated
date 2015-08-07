@@ -1,0 +1,7 @@
+#/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+cleanType=${1}
+set -x
+
+wclean $cleanType utilities
+# ----------------------------------------------------------------- end-of-file

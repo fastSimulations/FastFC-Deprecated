@@ -1,0 +1,17 @@
+nameOfVariable_REGIONNAME.set
+(
+	zoneID,
+	new volTensorField
+	(
+  	 	IOobject
+		(
+	       	"nameOfVariable",
+		   	runTime.timeName(),
+   		   	REGIONNAMERegions[zoneID],
+   		   	IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+		),
+		REGIONNAMERegions[zoneID],
+		dimensionedTensor("nameOfVariableInit", dimensionSet( 0, 2, 0, 0, 0, 0, 0 ),tensor::zero)
+	)
+);

@@ -1,0 +1,5 @@
+cellSet APTL new boxToCell (0 0 0)(1.0 150e-6 1.0)
+cellSet ACL new boxToCell (0 150e-6  0)(1.0 153e-6 1.0)
+cellSet PMEM new boxToCell (0 153e-6 0)(1.0 178e-6 1.0)
+cellSet CCL new boxToCell (0 178e-6 0)(1.0 190.1e-6 1.0)
+cellSet CPTL new boxToCell (0 190.1e-6 0)(1.0 340.1e-6 1.0)

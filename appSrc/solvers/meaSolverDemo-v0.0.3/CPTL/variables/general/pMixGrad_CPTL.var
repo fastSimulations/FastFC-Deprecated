@@ -1,0 +1,17 @@
+pMixGrad_CPTL.set
+(
+	zoneID,
+	new volVectorField
+	(
+  	 	IOobject
+	    (
+	      	"pMixGrad",
+		   	runTime.timeName(),
+       	   	CPTLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedVector("pMixGradInit", dimensionSet( 1,-2,-2, 0, 0, 0, 0 ), vector::zero)
+	)
+);

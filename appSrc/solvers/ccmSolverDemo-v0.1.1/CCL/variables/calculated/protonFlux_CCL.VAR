@@ -1,0 +1,17 @@
+protonFlux_CCL.set
+(
+	zoneID,
+	new surfaceScalarField
+	(
+  	 	IOobject
+		(
+	       	"protonFlux",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::NO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("protonFlux_init", dimensionSet( 0, 0, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

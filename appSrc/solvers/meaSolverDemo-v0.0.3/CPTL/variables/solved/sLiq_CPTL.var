@@ -1,0 +1,16 @@
+sLiq_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"sLiq",
+            runTime.timeName(),
+            CPTLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+      	),
+       	CPTLRegions[zoneID]                
+	)
+);

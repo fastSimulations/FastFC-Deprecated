@@ -1,0 +1,17 @@
+kPermRelLiq_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"kPermRelLiq",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("kPermRelLiqInit", dimensionSet( 0, 2, 0, 0, 0, 0, 0 ), 0.)
+	)
+);

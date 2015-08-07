@@ -1,0 +1,17 @@
+pH2_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"pH2",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("pH2Init", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.)
+	)
+);

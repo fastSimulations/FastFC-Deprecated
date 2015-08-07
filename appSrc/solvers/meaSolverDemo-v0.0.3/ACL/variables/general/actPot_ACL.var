@@ -1,0 +1,17 @@
+actPot_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"actPot",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("actPotInit", dimensionSet( 1, 2, -3, 0, 0, -1, 0 ), 0.)
+	)
+);

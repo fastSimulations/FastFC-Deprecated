@@ -1,0 +1,17 @@
+djSDs_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	    	"djSDs",
+		   	runTime.timeName(),
+       		APTLRegions[zoneID],
+       		IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		APTLRegions[zoneID],
+		dimensionedScalar("djSDsInit", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.)
+     )
+);

@@ -1,0 +1,16 @@
+T_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"T",
+            runTime.timeName(),
+            CCLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+     	),
+        CCLRegions[zoneID]                
+	)	
+);

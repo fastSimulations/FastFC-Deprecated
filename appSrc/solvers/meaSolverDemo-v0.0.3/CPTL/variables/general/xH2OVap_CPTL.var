@@ -1,0 +1,17 @@
+xH2OVap_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	  	(
+	      	"xH2OVap",
+		   	runTime.timeName(),
+     	   	CPTLRegions[zoneID],
+     	   	IOobject::NO_READ,
+     		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("x_H2O_v_init", dimensionSet(0, 0, 0, 0, 0, 0, 0), 0.)
+	)
+);

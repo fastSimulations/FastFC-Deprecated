@@ -1,0 +1,232 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dictionaryReplacement
+{
+    potElectron
+    {
+        internalField   uniform 0;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	condElectronEff;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+
+    potProton
+    {
+        internalField   uniform 0.;
+
+        boundaryField
+        {
+           	MEALeft
+            {
+				type			empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			zeroGradient;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	condProtonEff;
+	    	}
+        }
+    }
+
+    wH2
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffH2;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+	wH2OVap
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffH2OVap;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+	T
+    {
+        internalField   uniform 348;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffEnergy;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+	pMix
+    {
+        internalField   uniform 135798.786;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	dynamicPerm;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+	sLiq
+    {
+        internalField   uniform 0.;
+
+        boundaryField
+        {
+            MEALeft
+            {
+                type            empty;
+            }
+	    	MEARight
+	    	{
+  				type			empty;
+	    	}
+			frontAndBack
+			{
+				type			empty;
+			}
+			ACL_to_APTL
+			{
+				type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	diffH2OLiq;
+			}
+	    	ACL_to_PMEM
+	    	{
+				type			zeroGradient;
+	    	}
+        }
+    }
+
+}
+
+// ************************************************************************* //

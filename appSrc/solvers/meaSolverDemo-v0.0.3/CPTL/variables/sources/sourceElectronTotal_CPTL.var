@@ -1,0 +1,17 @@
+sourceElectronTotal_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"sourceElectronTotal",
+		  	runTime.timeName(),
+       	   	CPTLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("sourceElectronTotalInit", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

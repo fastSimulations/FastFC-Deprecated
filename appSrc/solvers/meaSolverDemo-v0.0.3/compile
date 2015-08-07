@@ -1,0 +1,3 @@
+rmdepall
+wclean
+wmake -d > compile.log 3>&1

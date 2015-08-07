@@ -1,0 +1,16 @@
+pMix_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"pMix",
+         	runTime.timeName(),
+            APTLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+      	),
+        APTLRegions[zoneID]                
+   	)
+);

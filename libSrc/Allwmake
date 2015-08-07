@@ -1,0 +1,18 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+wmakeCheckPwd "$WM_PROJECT_USER_DIR/FastFC/libSrc" || {
+    echo "Error: Current directory is not $WM_PROJECT_USER_DIR/FastFC/libSrc"
+    echo "    The environment variable are not consistent with the installation."
+    echo "    Check the fcAPOLLO entries in your dot-files and source them."
+    exit 1
+}
+
+# wmake is required for subsequent targets
+#( cd wmake/src && make )
+
+# build fcAPOLLO libraries
+src/Allwmake
+# bulid fcAPOLLO applications
+#applications/Allwmake
+# ----------------------------------------------------------------- end-of-file

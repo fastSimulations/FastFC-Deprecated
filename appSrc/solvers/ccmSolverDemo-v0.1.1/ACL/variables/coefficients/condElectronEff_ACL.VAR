@@ -1,0 +1,17 @@
+condElectronEff_ACL.set
+(
+    zoneID,
+    new volScalarField
+    (
+    	IOobject
+        (
+	  		"condElectronEff",
+	  		runTime.timeName(),
+	  		ACLRegions[zoneID],
+	  		IOobject::READ_IF_PRESENT,
+	  		IOobject::AUTO_WRITE
+	 	),
+	 	ACLRegions[zoneID], 
+	 	dimensionedScalar("condElectronInit", dimensionSet(-1, -3, 3, 0, 0, 2, 0), 0.)
+    )
+);

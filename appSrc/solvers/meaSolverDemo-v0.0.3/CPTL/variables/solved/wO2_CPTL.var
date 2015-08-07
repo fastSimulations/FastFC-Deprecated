@@ -1,0 +1,16 @@
+wO2_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+       	IOobject
+       	(
+          	"wO2",
+           	runTime.timeName(),
+           	CPTLRegions[zoneID],
+           	IOobject::MUST_READ,
+           	IOobject::AUTO_WRITE
+       	),
+       	CPTLRegions[zoneID]                
+	)
+);

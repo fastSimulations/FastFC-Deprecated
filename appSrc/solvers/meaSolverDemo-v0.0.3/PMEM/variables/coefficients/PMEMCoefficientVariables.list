@@ -1,0 +1,3 @@
+#include <condProtonEff_PMEM.var>
+#include <condThermalEff_PMEM.var>
+#include <transportCoeffEnergy_PMEM.var>

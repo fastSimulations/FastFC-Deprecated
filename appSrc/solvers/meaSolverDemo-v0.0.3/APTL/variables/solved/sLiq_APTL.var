@@ -1,0 +1,16 @@
+sLiq_APTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+    	IOobject
+        (
+        	"sLiq",
+            runTime.timeName(),
+            APTLRegions[zoneID],
+            IOobject::MUST_READ,
+            IOobject::AUTO_WRITE
+      	),
+       	APTLRegions[zoneID]                
+	)
+);

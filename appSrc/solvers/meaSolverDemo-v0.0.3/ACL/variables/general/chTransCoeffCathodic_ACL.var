@@ -1,0 +1,17 @@
+chTransCoeffCathodic_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"chTransCoeffCathodic",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("chTransCoeffCathodicInit", dimensionSet( 1, 2, -3, 0, 0, -1, 0 ), 0.)
+	)
+);

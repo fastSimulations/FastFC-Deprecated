@@ -1,0 +1,8 @@
+
+basicFvPatchFields = fvPatchFields/basic
+$(basicFvPatchFields)/interiorCoupledMixed/interiorCoupledMixedFvPatchFields.C
+
+derivedFvPatchFields = fvPatchFields/derived
+$(derivedFvPatchFields)/interiorMixedScalarScalar/interiorScalarMixedFvPatchScalarField.C
+
+LIB = $(FOAM_USER_LIBBIN)/libFASTsrc

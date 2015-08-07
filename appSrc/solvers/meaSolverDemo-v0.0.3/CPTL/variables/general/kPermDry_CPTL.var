@@ -1,0 +1,17 @@
+kPermDry_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"kPermDry",
+		   	runTime.timeName(),
+   		   	CPTLRegions[zoneID],
+   		   	IOobject::NO_READ,
+   			IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("kPermDryInit", dimensionSet( 0, 2, 0, 0, 0, 0, 0 ), 0.0)
+	)
+);

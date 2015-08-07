@@ -1,0 +1,18 @@
+viscMix_CPTL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+	   	(
+	      	"viscMix",
+		   	runTime.timeName(),
+         	CPTLRegions[zoneID],
+         	IOobject::NO_READ,
+      		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedScalar("viscMixInit", dimensionSet( 1,-1,-1, 0, 0, 0, 0 ), 0.)
+     )
+);
+

@@ -1,0 +1,7 @@
+cd libSrc
+./Allwclean
+./Allwmake
+cd ../appSrc
+./Allwclean
+./Allwmake
+cd ..

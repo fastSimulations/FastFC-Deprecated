@@ -1,0 +1,17 @@
+reactionRateTHVSum_ACL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"reactionRateTHVSum",
+		  	runTime.timeName(),
+       	   	ACLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("reactionRateTHVSumInit", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

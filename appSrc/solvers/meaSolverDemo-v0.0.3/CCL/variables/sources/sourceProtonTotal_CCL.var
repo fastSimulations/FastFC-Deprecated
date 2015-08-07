@@ -1,0 +1,17 @@
+sourceProtonTotal_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"sourceProtonTotal",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("sourceProtonTotalInit", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

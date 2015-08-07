@@ -1,0 +1,17 @@
+potElectronGrad_CPTL.set
+(
+	zoneID,
+	new volVectorField
+	(
+  	 	IOobject
+	    (
+	      	"potElectronGrad",
+		   	runTime.timeName(),
+       	   	CPTLRegions[zoneID],
+       	   	IOobject::NO_READ,
+       		IOobject::AUTO_WRITE
+		),
+		CPTLRegions[zoneID],
+		dimensionedVector("potElectronGradInit", dimensionSet( 1, 1,-3, 0, 0,-1, 0 ), vector::zero)
+	)
+);

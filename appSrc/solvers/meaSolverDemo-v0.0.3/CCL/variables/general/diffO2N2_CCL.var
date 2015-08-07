@@ -1,0 +1,17 @@
+diffO2N2_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"diffO2N2",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("diffO2N2Init", dimensionSet( 0, 2,-1, 0, 0, 0, 0 ), 0.)
+	)
+);

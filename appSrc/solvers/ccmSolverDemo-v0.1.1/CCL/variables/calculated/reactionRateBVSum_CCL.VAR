@@ -1,0 +1,17 @@
+reactionRateBVSum_CCL.set
+(
+	zoneID,
+	new volScalarField
+	(
+  	 	IOobject
+		(
+	       	"reactionRateBVSum",
+		  	runTime.timeName(),
+       	   	CCLRegions[zoneID],
+       	   	IOobject::READ_IF_PRESENT,
+       		IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("reactionRateBVSum_init", dimensionSet( 0,-3, 0, 0, 0, 1, 0 ), 0.0)
+	)
+);

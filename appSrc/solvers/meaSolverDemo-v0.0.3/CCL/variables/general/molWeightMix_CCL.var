@@ -1,0 +1,17 @@
+molWeightMix_CCL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"molWeightMix",
+		   	runTime.timeName(),
+       		CCLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		CCLRegions[zoneID],
+		dimensionedScalar("molWeightMixInit", dimensionSet( 1, 0, 0, 0,-1, 0, 0 ), 0.)
+	)
+);

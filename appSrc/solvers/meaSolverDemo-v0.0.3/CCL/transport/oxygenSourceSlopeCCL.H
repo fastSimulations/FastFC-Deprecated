@@ -1,0 +1,89 @@
+// Calculate the volumetric current production
+if(1==cathodeKineticsAgglomerate)
+{
+	sourceVolOxygenLeft_ = (Fast::Constants::molWeightO2/(4.*Fast::Constants::faraday))*
+		butlerVolmerAgglomerate
+		(
+			sourceVolCurrent,
+			T,
+			sAC,
+			volFPore,
+			actPot,
+			diffO2Ion,
+			pMix,
+			xO2Left_,
+			henrySolO2,
+			tIonFilm,
+			sVAgg,
+			diffO2IonAgg,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL,
+			radiusAggInput_CCL 
+		);	
+
+	sourceVolOxygenRight_ = (Fast::Constants::molWeightO2/(4.*Fast::Constants::faraday))*	
+		butlerVolmerAgglomerate
+		(
+			sourceVolCurrent,
+			T,
+			sAC,
+			volFPore,
+			actPot,
+			diffO2Ion,
+			pMix,
+			xO2Right_,
+			henrySolO2,
+			tIonFilm,
+			sVAgg,
+			diffO2IonAgg,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL,
+			radiusAggInput_CCL 
+		);		
+}
+else
+{
+	sourceVolOxygenLeft_ = (Fast::Constants::molWeightO2/(4.*Fast::Constants::faraday))*
+		butlerVolmerDiscrete
+		(
+ 			sourceVolCurrent,
+			T,
+			sAC,
+			actPot,
+			pMix,
+			xO2Left_,
+			henrySolO2,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL
+		);
+
+	sourceVolOxygenRight_ = (Fast::Constants::molWeightO2/(4.*Fast::Constants::faraday))*
+		butlerVolmerDiscrete
+		(
+ 			sourceVolCurrent,
+			T,
+			sAC,
+			actPot,
+			pMix,
+			xO2Right_,
+			henrySolO2,
+			nElectronsInput_CCL,
+			symmetryFactorInput_CCL,
+			exchCurrBVRefInput_CCL,
+			actEnergyBVInput_CCL,
+			tempBVRefInput_CCL,
+			concO2BVRefInput_CCL
+		);
+}

@@ -1,0 +1,17 @@
+sourceEnergyPhaseChange_ACL.set
+(
+	zoneID,
+	new volScalarField
+  	(
+  		IOobject
+	  	(	
+	      	"sourceEnergyPhaseChange",
+		   	runTime.timeName(),
+       		ACLRegions[zoneID],
+       	  	IOobject::NO_READ,
+       	   	IOobject::AUTO_WRITE
+		),
+		ACLRegions[zoneID],
+		dimensionedScalar("sourceEnergyPhaseChangeInit", dimensionSet( 1,-1,-2, 0, 0, 0, 0 ), 0.)
+	)
+);

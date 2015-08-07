@@ -1,0 +1,35 @@
+FAST_LIB = $(WM_PROJECT_USER_DIR)/FastFC/libSrc
+
+EXE_INC = \
+    -IACL \
+    -IACL/variables/solved \
+    -IACL/variables/coefficients \
+    -IACL/variables/sources \
+	-IACL/variables/calculated \
+    -IPMEM \
+    -IPMEM/variables/solved \
+    -IPMEM/variables/coefficients \
+    -IPMEM/variables/sources \
+	-IPMEM/variables/calculated \
+    -ICCL \
+    -ICCL/variables/solved \
+    -ICCL/variables/coefficients \
+    -ICCL/variables/sources \
+	-ICCL/variables/calculated \
+    -IconvergenceChecking \
+	-Iinitialization \
+	-Idictionary \
+	-Iequations \
+	-Isolve \
+    -Iinclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+	-I$(LIB_SRC)/fvOptions/lnInclude \
+	-I$(FAST_LIB)/src/fields/lnInclude  \
+	-I$(FAST_LIB)/src/utilities/lnInclude
+EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
+    -lmeshTools \
+    -lfiniteVolume \
+    -lFASTutilities \
+	-lFASTsrc 
