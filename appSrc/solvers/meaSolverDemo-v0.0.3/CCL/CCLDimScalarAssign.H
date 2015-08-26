@@ -39,3 +39,4 @@ dimensionedScalar 	condRateInput_CCL(transportProperties.lookup("condensationRat
 dimensionedScalar 	evapRateInput_CCL(transportProperties.lookup("evaporationRate"));
 dimensionedScalar 	sCorrOrderPermInput_CCL(transportProperties.lookup("sCorrectOrderPerm"));
 dimensionedScalar 	sCorrOrderDiffInput_CCL(transportProperties.lookup("sCorrectOrderDiff"));
+dimensionedScalar	condProtonCoeff_CCL(transportProperties.lookup("condProtonBase"));

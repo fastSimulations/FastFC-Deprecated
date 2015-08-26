@@ -17,7 +17,7 @@ FoamFile
 // Template						Template					Units of Input Value				Value		Comments																					S.I. Units
 // Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 	$$
 refBVExchangeCurrent			refBVExchangeCurrent		[	0  -2   0   0   0   1   0 ]		4700.;		// $$	Ref. Exch. Current Density for the HOR using the Butler-Volmer Equation				[A/m^2 pt]			$$
-refBVTemperature				refBVTemperature			[   0  	0   0   1   0   0   0 ]		333.;		// $$	Reference Temperature at the which the exchange current was measured 				[K]						$$
+refBVTemperature				refBVTemperature			[   0  	0   0   1   0   0   0 ]		333.;		// $$	Reference Temperature at the which the exchange current was measured 				[K]					$$
 activationEnergyBV				activationEnergy			[	0   0   0   0   0   0   0 ]     1.00;		// $$	Activation energy correction (Arrhenius form) for the HOR using the BV-equation		[J/mol ]			$$
 symmetryFactorBV				symmetryFactorBV			[   0   0   0   0   0   0   0 ]		0.5;		// $$	Symmetry factor of the HOR reaction based on the single-step assumption in BV		[-]					$$
 numberElectronsBV				numberElectronsBV			[   0   0   0   0   0   0   0 ]		2.0;		// $$	Number of electrons transferred in the rate determining step for the BV model		[-]					$$
@@ -38,6 +38,7 @@ ratioPlatinumSupport			ratioPlatinumSupport		[   0   0   0   0   0   0   0 ]		0.
 ratioCatalystIonomer			ratioCatalystIonomer		[   0   0   0   0   0   0   0 ]		0.23;		// $$	Ionomer:catalyst ratio (fraction of catalyst ink solids that are ionomer) 			[-] 				$$
 radiusAgglomerate				radiusAgglomerate			[   0   1   0   0   0   0   0 ]		1.e-7;		// $$	Average agglomerate radius 															[micrometers]		$$
 condElectronSupport				condElectronSupport			[  -1  -3   3   0   0   2   0 ]		2000.;		// $$	Support material electronic conductiivity 											[S/m] 				$$
+condProtonBase					condProtonBase				[  -1  -3   3   0   0   2   0 ]		100.;		// $$	Baseline proton conductivity as per Springer et al.									[S/m]				$$
 tortuositySupportX				tortuositySupportX			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the x-dir 											[-] 				$$
 tortuositySupportY				tortuositySupportY			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the y-dir 											[-] 				$$
 tortuositySupportZ				tortuositySupportZ			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the z-dir 											[-] 				$$

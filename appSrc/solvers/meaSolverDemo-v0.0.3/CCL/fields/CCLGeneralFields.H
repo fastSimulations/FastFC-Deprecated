@@ -279,8 +279,8 @@
 			dimensionedScalar condProtonCoeff_
 			(
 			 	"condProtonCoeff_",
-			 	dimensionSet(condProtonIon.dimensions()),
-				100.
+			 	dimensionSet(condProtonCoeff_CCL.dimensions()),
+				condProtonCoeff_CCL.value()
 			);
 
 			scalar condProtIonCoeff1_ = -0.00326;

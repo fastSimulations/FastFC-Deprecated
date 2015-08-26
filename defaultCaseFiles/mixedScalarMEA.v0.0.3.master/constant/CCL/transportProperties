@@ -34,6 +34,7 @@ ratioPlatinumSupport			ratioPlatinumSupport		[   0   0   0   0   0   0   0 ]		0.
 ratioCatalystIonomer			ratioCatalystIonomer		[   0   0   0   0   0   0   0 ]		0.23;		// $$	Ionomer:catalyst ratio (fraction of catalyst ink solids that are ionomer) 			[-] 					$$
 radiusAgglomerate				radiusAgglomerate			[   0   1   0   0   0   0   0 ]		2.e-7;		// $$	Average agglomerate radius 															[m] 					$$
 condElectronSupport				condElectronSupport			[  -1  -3   3   0   0   2   0 ]		2000.;		// $$	Support material electronic conductiivity 											[(A^2*s^3)/(kg*m^3)]	$$
+condProtonBase					condProtonBase				[  -1  -3   3   0   0   2   0 ]		100.;		// $$	Baseline proton conductivity as per Springer et al.									[S/m]					$$
 tortuositySupportX				tortuositySupportX			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the x-dir 											[-] 					$$
 tortuositySupportY				tortuositySupportY			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the y-dir 											[-] 					$$
 tortuositySupportZ				tortuositySupportZ			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the z-dir 											[-] 					$$

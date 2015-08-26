@@ -170,12 +170,12 @@
 						);
 		}
 		// Conductivity of Protons within the Ionomer
-		{
+		{	
 			dimensionedScalar condProtonCoeff_
 			(
 			 	"condProtonCoeff_",
-			 	dimensionSet(condProtonIon.dimensions()),
-				100.
+			 	dimensionSet(condProtonCoeff_ACL.dimensions()),
+				condProtonCoeff_ACL.value()
 			);
 
 			scalar condProtIonCoeff1_ = -0.00326;
