@@ -107,6 +107,7 @@ echo
 # Clean the previous run data, note this was done with the cleanCase command
 echo "Cleaning previous run data:"
 rm -rf 0/ccx 0/ccy 0/ccz
+rm -rf polarizationData.txt
 echo "done"
 echo
 # Clean the post processing files
