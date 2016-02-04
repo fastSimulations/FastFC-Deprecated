@@ -1,6 +1,0 @@
-FastFC=$WM_PROJECT_USER_DIR/FastFC
-FastFC_LIB=$FastFC/libSrc
-FastFC_SOL=$FastFC/AppSrc
-source $FastFC/config/aliases.sh
-PATH=$FastFC/runFastFunctions:$PATH
-export PATH;
