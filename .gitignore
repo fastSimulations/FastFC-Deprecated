@@ -1,3 +1,5 @@
 linux64Gcc48DPOpt/
 lnInclude/
 *.dep
+*.swp
+.*.swp
