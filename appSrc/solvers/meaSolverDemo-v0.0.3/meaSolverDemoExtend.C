@@ -5,7 +5,7 @@
     \\  /    A nd           | For copyright notice see file Copyright
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-    F ast           	    | FAST-FC: 
+   F ast           	    | FAST-FC: 
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
@@ -14,6 +14,7 @@
 	C ells                  |                     
 -------------------------------------------------------------------------------
 License
+	This file is part of FAST-FC.
 
 	FAST-FC is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
@@ -27,8 +28,6 @@ License
 
     You should have received a copy of the GNU General Public License
     along with FAST-FC.  If not, see <http://www.gnu.org/licenses/>.
-
-	This file is part of foam-extend.
 
     foam-extend is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by the
