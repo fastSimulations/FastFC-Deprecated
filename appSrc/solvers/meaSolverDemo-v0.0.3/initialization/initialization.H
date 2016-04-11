@@ -33,15 +33,6 @@ Description
 	Master file for setup of the initial variables and solution guess 
 
 Notes
-	1/ 	The electronic potential on the cathode uses the initial guess 
-		in the change dict file.
-	2/	The Transport Coefficients are set to contain "1" which aids in setup of smooth
-		solved variable profiles
-	3/	Current production is assumed to be zero (eta=0)
-	4/	Cathode electrical potential is equal to the set voltage (changeDict)
-	5/	Anode electrical potential is set to zero
-	6/	Cathode and anode proton potential are derived to keep (eta=0)
-	7/	Membrane proton potential is set through a matrix solve
 
 Developers
 	David B. Harvey
@@ -54,7 +45,6 @@ Developers
 
 // Setup the solved variable profiles and write to the 0/$COMPONENT directory
 #include "initSolvedFields.H"	
-
 
 forAll(APTLRegions, zoneID)
 {
@@ -89,3 +79,5 @@ forAll(PMEMRegions, zoneID)
 	#include "PMEMGeneralFields.H"
 	#include "PMEMCoefficientFields.H"
 }
+
+
