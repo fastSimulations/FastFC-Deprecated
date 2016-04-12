@@ -30,6 +30,16 @@ License
 \*---------------------------------------------------------------------------*/
 
 Info<< nl
+	<< "/*---------------------------------------------------------------------------*\\"
+	<< "	F ast           	    | FAST-FC: " << nl
+	<< "	is the		            | The Open Source Analysis and Simulation Toolbox" << nl
+	<< "    A nalysis and           | for Fuel Cells" << nl
+	<< "	S imulation		        |" << nl
+	<< "	Toolbox for		        | Copyright 2016, David B. Harvey" << nl
+	<< " 	F uel                   |" << nl
+	<< "	C ells                  |" << nl
+	<< "-------------------------------------------------------------------------------" << nl
+	<< "    " << nl
 	<< "FAST-FC was developed by David B. Harvey, Copyright 2016." << nl
 	<< "    " << nl
     << "FAST-FC was developed through sponsorship by the United States" << nl
