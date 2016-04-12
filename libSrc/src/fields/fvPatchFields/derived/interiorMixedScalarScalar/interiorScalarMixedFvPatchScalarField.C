@@ -252,6 +252,10 @@ void interiorScalarMixedFvPatchScalarField::updateCoeffs()
         nDelta
     );
 
+	// Check for zero or non-zero transport coefficient
+	pIntFldK = Foam::max(pIntFldK, VSMALL);
+	nIntFldK = Foam::max(nIntFldK, VSMALL);
+
 	// Apply a cell spacing based weighting on the conductivities
 	scalarField pKDelta(pIntFldK*pDelta);
 	scalarField nKDelta(nIntFldK*nDelta);
