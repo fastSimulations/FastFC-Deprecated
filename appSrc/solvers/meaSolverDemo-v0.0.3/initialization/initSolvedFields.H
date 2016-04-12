@@ -144,22 +144,16 @@ Developers
 		{
 			// Electrons
 			potElectron.internalField() = potElectronAnodeInit_;
-			potElectron.boundaryField() = potElectronAnodeInit_;
 			// Hydrogen
 			wH2.internalField() = wH2AnodeInit_;
-			wH2.boundaryField() = wH2AnodeInit_;
 			// Water Vapour
 			wH2OVap.internalField() = wH2OVapAnodeInit_;
-			wH2OVap.boundaryField() = wH2OVapAnodeInit_;
 			// Temperature
 			T.internalField() = TAnodeInit_;
-			T.boundaryField() = TAnodeInit_;
 			// Mixture Pressure
 			pMix.internalField() = pMixAnodeInit_;
-			pMix.boundaryField() = pMixAnodeInit_;
 			// Liquid Water Saturation
 			sLiq.internalField() = sLiqAnodeInit_;
-			sLiq.boundaryField() = sLiqAnodeInit_;
 		}
 
 		// Set Boundary Patch ACL
@@ -213,7 +207,7 @@ Developers
 		forAll(patchAPTL, faceID)
 		{
 			// Electrons
-			potElectron.boundarTyField()[patchIdAPTL][faceID] = potElectronAnodeInit_;
+			potElectron.boundaryField()[patchIdAPTL][faceID] = potElectronAnodeInit_;
 			// Protons
 			potProton.boundaryField()[patchIdAPTL][faceID] = 0.;
 			// Hydrogen
@@ -232,7 +226,7 @@ Developers
 		forAll(patchPMEM, faceID)
 		{
 			// Electrons
-			potElectron.boundarTyField()[patchIdPMEM][faceID] = potElectronAnodeInit_;
+			potElectron.boundaryField()[patchIdPMEM][faceID] = potElectronAnodeInit_;
 			// Protons
 			potProton.boundaryField()[patchIdPMEM][faceID] = 0.;
 			// Hydrogen
@@ -389,7 +383,7 @@ Developers
 			// Mixture Pressure
 			pMix.boundaryField()[patchIdCCL][faceID] = pMixCathodeInit_;
 			// Liquid Water Saturation
-			sLiq.boundaryField()[patchIdCCL][faceId] = sLiqCathodeInit_;
+			sLiq.boundaryField()[patchIdCCL][faceID] = sLiqCathodeInit_;
 		}
 	}
 	
