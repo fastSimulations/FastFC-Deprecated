@@ -30,18 +30,18 @@ License
 \*---------------------------------------------------------------------------*/
 
 Info<< nl
-	<< "FAST-FC was developed by and is Copyright 2015, David B. Harvey" << nl
+	<< "FAST-FC was developed by David B. Harvey, Copyright 2016." << nl
 	<< "    " << nl
 	<< "    " << nl
-    << "FAST-FC was developed with sponsorship by the United States Department of Energy" << nl
-	<< "and by support provided by Ballard Power Systems Inc." << nl
+    << "FAST-FC was developed through sponsorship by the United States Department of Energy," << nl
+	<< "Ballard Power Systems Inc., and Queen's University at Kingston" << nl
 	<< "    " << nl
 	<< "FAST-FC is free software: you can redistribute it and/or modify it" << nl
     << "under the terms of the GNU General Public License as published by" << nl
 	<< "the Free Software Foundation, either version 3 of the License, or" << nl
 	<< "(at your option) any later version." << nl
 	<< "    " << nl
-	<< "FC-APOLLO is a derivative work of FAST-FC, by David B. Harvey" << nl
+	<< "FC-APOLLO is a fork of FAST-FC and a derivative code by David B. Harvey" << nl
 	<< "    " << nl
 	<<	"FC-APOLLO is distributed in the hope that it will be useful, but WITHOUT" << nl
 	<< "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or" << nl
@@ -70,8 +70,7 @@ Info<< nl
 	<< "    " << nl
 	<< "    " << nl
 	<< "FAST-FC VERSION 0.0.3" << nl
-	<< "Brought to you by openESS" << nl
-	<< "June 30, 2015" << nl
+	<< "Brought to you by FAST Simulations" << nl
 	<< "    " << nl
 	<< "    " << nl
 	<< "    " << nl
