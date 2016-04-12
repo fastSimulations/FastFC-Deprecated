@@ -17,7 +17,7 @@ forAll(ACLRegions, zoneID)
 
 	
 	cout<< "\n"
-		<< "******************************* Block Left *******************************"
+		<< "***************************** Anode Electrode *****************************"
 		<< "\n"
 		<< std::left
 		<< std::setw(30) << "Total Curent Density" 
@@ -79,7 +79,7 @@ forAll(CCLRegions, zoneID)
 	scalar reactionRateAve = gAverage(sourceVolCurrent);
 
 	cout<< "\n"
-		<< "******************************* Block Right *******************************"
+		<< "**************************** Cathode Electrode *****************************"
 		<< "\n"
 		<< std::left
 		<< std::setw(30) << "Total Curent Density" 
