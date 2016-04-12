@@ -80,4 +80,8 @@ forAll(PMEMRegions, zoneID)
 	#include "PMEMCoefficientFields.H"
 }
 
+// Correct Solved Boundary Conditions
+#include "initCorrectSolvedBoundaryConditions.H"
 
+// Write the initialization fields
+#include "initWriteSolvedFields.H"

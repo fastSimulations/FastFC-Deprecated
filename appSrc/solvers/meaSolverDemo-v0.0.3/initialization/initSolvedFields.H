@@ -386,10 +386,4 @@ Developers
 			sLiq.boundaryField()[patchIdCCL][faceID] = sLiqCathodeInit_;
 		}
 	}
-	
-	// Correct Solved Boundary Conditions
-	#include "initCorrectSolvedBoundaryConditions.H"
-
-	// Write the initialization fields
-	#include "initWriteSolvedFields.H"
 }
