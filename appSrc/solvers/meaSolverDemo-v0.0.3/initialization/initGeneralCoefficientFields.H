@@ -30,28 +30,57 @@ File
 	initialization.H
 
 Description
-	Master file for setup of the initial variables and solution guess 
+	initialize the general and coefficient fields based on the initialized
+	solution  
 
 Notes
 
 Developers
 	David B. Harvey
 \*---------------------------------------------------------------------------*/ 
-// Determine the active area and electrode thicknesses
-#include "initElectrodeGeometry.H"
 
-// Setup the transport coefficients to dummy coefficients (for smooth initial guess)
-// This will be redundant on move to the new BC's
-#include "initTransportCoefficients.H"
+// Initialize the General and Coefficient Fields
 
-// Setup the solved variable profiles and write to the 0/$COMPONENT directory
-#include "initSolvedFields.H"	
+// APTL Field Calculations
+forAll(APTLRegions, zoneID)
+{
+	#include "APTLSetFields.H"
+	#include "APTLGeneralFields.H"
+	#include "APTLCoefficientFields.H"
+}
 
-// Setup General and Coefficient Fields based on the solved variable init
-#include "initGeneralCoefficientFields.H"
+// ACL Field Calculations
+forAll(ACLRegions, zoneID)
+{
+	#include "ACLSetFields.H"
+	#include "ACLGeneralFields.H"
+	#include "ACLCoefficientFields.H"
+	#include "ACLElectrochemistryFields.H"
+}
 
-// Correct Solved Boundary Conditions
-#include "initCorrectSolvedBoundaryConditions.H"
+// CCL Field Calculations
+forAll(CCLRegions,zoneID)
+{
+	#include "CCLSetFields.H"
+	#include "CCLGeneralFields.H"
+	#include "CCLCoefficientFields.H"
+	#include "CCLElectrochemistryFields.H"
+}
 
-// Write the initialization fields
-#include "initWriteSolvedFields.H"
+// CPTL Field Calculations
+forAll(CPTLRegions,zoneID)
+{
+	#include "CPTLSetFields.H"
+	#include "CPTLGeneralFields.H"
+	#include "CPTLCoefficientFields.H"
+}
+
+// PMEM Field Calculations
+forAll(PMEMRegions, zoneID)
+{
+	#include "PMEMSetFields.H"
+	#include "PMEMGetRelativeHumidity.H"
+	#include "PMEMGeneralFields.H"
+	#include "PMEMCoefficientFields.H"
+}
+
