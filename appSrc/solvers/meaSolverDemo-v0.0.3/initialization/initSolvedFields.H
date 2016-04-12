@@ -132,198 +132,270 @@ Developers
 	}
 
 	// Set the internal and boundary fields in all components
+
+	// APTL
 	forAll(APTLRegions, zoneID)
 	{
 		#include "APTLSetFields.H"
-		// Electrons
-		potElectron.internalField() = potElectronAnodeInit_;
-		potElectron.boundaryField() = potElectronAnodeInit_;
-		// Hydrogen
-		wH2.internalField() = wH2AnodeInit_;
-		wH2.boundaryField() = wH2AnodeInit_;
-		// Water Vapour
-		wH2OVap.internalField() = wH2OVapAnodeInit_;
-		wH2OVap.boundaryField() = wH2OVapAnodeInit_;
-		// Temperature
-		T.internalField() = TAnodeInit_;
-		T.boundaryField() = TAnodeInit_;
-		// Mixture Pressure
-		pMix.internalField() = pMixAnodeInit_;
-		pMix.boundaryField() = pMixAnodeInit_;
-		// Liquid Water Saturation
-		sLiq.internalField() = sLiqAnodeInit_;
-		sLiq.boundaryField() = sLiqAnodeInit_;
+		label patchIdACL = mesh.boundaryMesh().findPatchID("APTL_to_ACL");
+		const polyPatch& patchACL = mesh.boundaryMesh()[patchIdACL];
+
+		// Set Cell Centres
+		{
+			// Electrons
+			potElectron.internalField() = potElectronAnodeInit_;
+			potElectron.boundaryField() = potElectronAnodeInit_;
+			// Hydrogen
+			wH2.internalField() = wH2AnodeInit_;
+			wH2.boundaryField() = wH2AnodeInit_;
+			// Water Vapour
+			wH2OVap.internalField() = wH2OVapAnodeInit_;
+			wH2OVap.boundaryField() = wH2OVapAnodeInit_;
+			// Temperature
+			T.internalField() = TAnodeInit_;
+			T.boundaryField() = TAnodeInit_;
+			// Mixture Pressure
+			pMix.internalField() = pMixAnodeInit_;
+			pMix.boundaryField() = pMixAnodeInit_;
+			// Liquid Water Saturation
+			sLiq.internalField() = sLiqAnodeInit_;
+			sLiq.boundaryField() = sLiqAnodeInit_;
+		}
+
+		// Set Boundary Patch ACL
+		forAll(patchACL, faceID)
+		{
+			// Electrons
+			potElectron.boundaryField()[patchIdACL][faceID] = potElectronAnodeInit_;
+			// Hydrogen
+			wH2.boundaryField()[patchIdACL][faceID] = wH2AnodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdACL][faceID] = wH2OVapAnodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdACL][faceID] = TAnodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdACL][faceID] = pMixAnodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdACL][faceID] = sLiqAnodeInit_;
+		}
+
 	}
 
+	// ACL
 	forAll(ACLRegions, zoneID)
 	{
 		#include "ACLSetFields.H"
-		// Electrons
-		potElectron.internalField() = potElectronAnodeInit_;
-		potElectron.boundaryField() = potElectronAnodeInit_;
-		// Protons
-		potProton.internalField() = 0.;
-		potProton.boundaryField() = 0.;
-		// Hydrogen
-		wH2.internalField() = wH2AnodeInit_;
-		wH2.boundaryField() = wH2AnodeInit_;
-		// Water Vapour
-		wH2OVap.internalField() = wH2OVapAnodeInit_;
-		wH2OVap.boundaryField() = wH2OVapAnodeInit_;
-		// Temperature
-		T.internalField() = TAnodeInit_;
-		T.boundaryField() = TAnodeInit_;
-		// Mixture Pressure
-		pMix.internalField() = pMixAnodeInit_;
-		pMix.boundaryField() = pMixAnodeInit_;
-		// Liquid Water Saturation
-		sLiq.internalField() = sLiqAnodeInit_;
-		sLiq.boundaryField() = sLiqAnodeInit_;
+		label patchIdAPTL = mesh.boundaryMesh().findPatchID("ACL_to_APTL");
+		const polyPatch& patchAPTL = mesh.boundaryMesh()[patchIdAPTL];
+		
+		label patchIdPMEM = mesh.boundaryMesh().findPatchID("ACL_to_PMEM");
+		const polyPatch& patchPMEM = mesh.boundaryMesh()[patchIdPMEM];
+
+		// Set Cell Centres
+		{
+			// Electrons
+			potElectron.internalField() = potElectronAnodeInit_;
+			// Protons
+			potProton.internalField() = 0.;
+			// Hydrogen
+			wH2.internalField() = wH2AnodeInit_;
+			// Water Vapour
+			wH2OVap.internalField() = wH2OVapAnodeInit_;
+			// Temperature
+			T.internalField() = TAnodeInit_;
+			// Mixture Pressure
+			pMix.internalField() = pMixAnodeInit_;
+			// Liquid Water Saturation
+			sLiq.internalField() = sLiqAnodeInit_;
+		}
+
+		// Set Boundary PatchAPTL
+		forAll(patchAPTL, faceID)
+		{
+			// Electrons
+			potElectron.boundarTyField()[patchIdAPTL][faceID] = potElectronAnodeInit_;
+			// Protons
+			potProton.boundaryField()[patchIdAPTL][faceID] = 0.;
+			// Hydrogen
+			wH2.boundaryField()[patchIdAPTL][faceID] = wH2AnodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdAPTL][faceID] = wH2OVapAnodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdAPTL][faceID] = TAnodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdAPTL][faceID] = pMixAnodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdAPTL][faceID] = sLiqAnodeInit_;
+		}
+	
+		// Set Boundary PatchPMEM
+		forAll(patchPMEM, faceID)
+		{
+			// Electrons
+			potElectron.boundarTyField()[patchIdPMEM][faceID] = potElectronAnodeInit_;
+			// Protons
+			potProton.boundaryField()[patchIdPMEM][faceID] = 0.;
+			// Hydrogen
+			wH2.boundaryField()[patchIdPMEM][faceID] = wH2AnodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdPMEM][faceID] = wH2OVapAnodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdPMEM][faceID] = TAnodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdPMEM][faceID] = pMixAnodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdPMEM][faceID] = sLiqAnodeInit_;
+		}
 	}
 
+	// PMEM
 	forAll(PMEMRegions, zoneID)
 	{
 		#include "PMEMSetFields.H"
-		label patchIDAnode = mesh.boundaryMesh().findPatchID("PMEM_to_ACL");
-		label patchIDCathode = mesh.boundaryMesh().findPatchID("PMEM_to_CCL");
-		// Protons
-		potProton.internalField() = 0.;
-		potProton.boundaryField() = 0.;
-		// Temperature
-		T.internalField() = (TAnodeInit_ + TCathodeInit_)/2.;
-		T.boundaryField() = (TAnodeInit_ + TCathodeInit_)/2.;
+		label patchIdACL = mesh.boundaryMesh().findPatchID("PMEM_to_ACL");
+		const polyPatch& patchACL = mesh.boundaryMesh()[patchIdACL];
+
+		label patchIdCCL = mesh.boundaryMesh().findPatchID("PMEM_to_CCL");
+		const polyPatch& patchCCL = mesh.boundaryMesh()[patchIdCCL];
+
+		// Set Cell Centres
+		{
+			// Protons
+			potProton.internalField() = 0.;
+			// Temperature
+			T.internalField() = (TAnodeInit_ + TCathodeInit_)/2.;
+		}
+
+		// Set Boundary Patch ACL
+		forAll(patchACL, faceID)
+		{
+			// Protons
+			potProton.boundaryField()[patchIdACL][faceID] = 0.;
+			// Temperature
+			T.boundaryField()[patchIdACL][faceID] = (TAnodeInit_ + TCathodeInit_)/2.;
+		}
+		
+		// Set Boundary Patch CCL
+		forAll(patchCCL, faceID)
+		{
+			// Protons
+			potProton.boundaryField()[patchIdCCL][faceID] = 0.;
+			// Temperature
+			T.boundaryField()[patchIdCCL][faceID] = (TAnodeInit_ + TCathodeInit_)/2.;
+		}
 	}
 	
+	// CCL
 	forAll(CCLRegions, zoneID)
 	{
 		#include "CCLSetFields.H"
-		// Electrons
-		potElectron.internalField() = potElectronCathodeInit_;
-		potElectron.boundaryField() = potElectronCathodeInit_;
-		// Protons
-		potProton.internalField() = 0.;
-		potProton.boundaryField() = 0.;
-		// Oxygen
-		wO2.internalField() = wO2CathodeInit_;
-		wO2.boundaryField() = wO2CathodeInit_;
-		// Water Vapour
-		wH2OVap.internalField() = wH2OVapCathodeInit_;
-		wH2OVap.boundaryField() = wH2OVapCathodeInit_;
-		// Temperature
-		T.internalField() = TCathodeInit_;
-		T.boundaryField() = TCathodeInit_;
-		// Mixture Pressure
-		pMix.internalField() = pMixCathodeInit_;
-		pMix.boundaryField() = pMixCathodeInit_;
-		// Liquid Water Saturation
-		sLiq.internalField() = sLiqCathodeInit_;
-		sLiq.boundaryField() = sLiqCathodeInit_;
+
+		label patchIdPMEM = mesh.boundaryMesh().findPatchID("CCL_to_PMEM");
+		const polyPatch& patchPMEM = mesh.boundaryMesh()[patchIdPMEM];
+
+		label patchIdCPTL = mesh.boundaryMesh().findPatchID("CCL_to_CPTL");
+		const polyPatch& patchCPTL = mesh.boundaryMesh()[patchIdCPTL];
+
+		// Set Cell Centres
+		{
+			// Electrons
+			potElectron.internalField() = potElectronCathodeInit_;
+			// Protons
+			potProton.internalField() = 0.;
+			// Oxygen
+			wO2.internalField() = wO2CathodeInit_;
+			// Water Vapour
+			wH2OVap.internalField() = wH2OVapCathodeInit_;
+			// Temperature
+			T.internalField() = TCathodeInit_;
+			// Mixture Pressure
+			pMix.internalField() = pMixCathodeInit_;
+			// Liquid Water Saturation
+			sLiq.internalField() = sLiqCathodeInit_;
+		}
+
+		// Set Boundary Patches
+		forAll(patchPMEM, faceID)
+		{
+			// Electrons
+			potElectron.boundaryField()[patchIdPMEM][faceID] = potElectronCathodeInit_;
+			// Protons
+			potProton.boundaryField()[patchIdPMEM][faceID] = 0.;
+			// Oxygen
+			wO2.boundaryField()[patchIdPMEM][faceID] = wO2CathodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdPMEM][faceID] = wH2OVapCathodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdPMEM][faceID] = TCathodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdPMEM][faceID] = pMixCathodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdPMEM][faceID] = sLiqCathodeInit_;
+		}
+
+		forAll(patchCPTL, faceID)
+		{
+			// Electrons
+			potElectron.boundaryField()[patchIdCPTL][faceID] = potElectronCathodeInit_;
+			// Protons
+			potProton.boundaryField()[patchIdCPTL][faceID] = 0.;
+			// Oxygen
+			wO2.boundaryField()[patchIdCPTL][faceID] = wO2CathodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdCPTL][faceID] = wH2OVapCathodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdCPTL][faceID] = TCathodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdCPTL][faceID] = pMixCathodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdCPTL][faceID] = sLiqCathodeInit_;
+		}
 	}
 
+	// CPTL
 	forAll(CPTLRegions, zoneID)
 	{
 		#include "CPTLSetFields.H"
-		// Electrons
-		potElectron.internalField() = potElectronCathodeInit_;
-		potElectron.boundaryField() = potElectronCathodeInit_;
-		// Oxygen
-		wO2.internalField() = wO2CathodeInit_;
-		wO2.boundaryField() = wO2CathodeInit_;
-		// Water Vapour
-		wH2OVap.internalField() = wH2OVapCathodeInit_;
-		wH2OVap.boundaryField() = wH2OVapCathodeInit_;
-		// Temperature
-		T.internalField() = TCathodeInit_;
-		T.boundaryField() = TCathodeInit_;
-		// Mixture Pressure
-		pMix.internalField() = pMixCathodeInit_;
-		pMix.boundaryField() = pMixCathodeInit_;
-		// Liquid Water Saturation
-		sLiq.internalField() = sLiqCathodeInit_;
-		sLiq.boundaryField() = sLiqCathodeInit_;
+		label patchIdCCL = mesh.boundaryMesh().findPatchID("CPTL_to_CCL");
+		const polyPatch& patchCCL = mesh.boundaryMesh()[patchIdCCL];
+
+		// Set Cell Centres
+		{
+			// Electrons
+			potElectron.internalField() = potElectronCathodeInit_;
+			// Oxygen
+			wO2.internalField() = wO2CathodeInit_;
+			// Water Vapour
+			wH2OVap.internalField() = wH2OVapCathodeInit_;
+			// Temperature
+			T.internalField() = TCathodeInit_;
+			// Mixture Pressure
+			pMix.internalField() = pMixCathodeInit_;
+			// Liquid Water Saturation
+			sLiq.internalField() = sLiqCathodeInit_;
+		}
+
+		// Set Boundary Patch CCL
+		forAll(patchCCL, faceID)
+		{
+			// Electrons
+			potElectron.boundaryField()[patchIdCCL][faceID] = potElectronCathodeInit_;
+			// Oxygen
+			wO2.boundaryField()[patchIdCCL][faceID] = wO2CathodeInit_;
+			// Water Vapour
+			wH2OVap.boundaryField()[patchIdCCL][faceID] = wH2OVapCathodeInit_;
+			// Temperature
+			T.boundaryField()[patchIdCCL][faceID] = TCathodeInit_;
+			// Mixture Pressure
+			pMix.boundaryField()[patchIdCCL][faceID] = pMixCathodeInit_;
+			// Liquid Water Saturation
+			sLiq.boundaryField()[patchIdCCL][faceId] = sLiqCathodeInit_;
+		}
 	}
 	
-	// Correct the boundary conditions
-	forAll(APTLRegions, zoneID)
-	{
-		#include "APTLSetFields.H"
-		// Electrons
-		potElectron.correctBoundaryConditions();
-		// Hydrogen
-		wH2.correctBoundaryConditions();
-		// Water Vapour
-		wH2OVap.correctBoundaryConditions();
-		// Temperature
-		T.correctBoundaryConditions();
-		// Mixture Pressure
-		pMix.correctBoundaryConditions();
-		// Liquid Water Saturation
-		sLiq.correctBoundaryConditions();
-	}
-	forAll(ACLRegions, zoneID)
-	{
-		#include "ACLSetFields.H"
-		// Electrons
-		potElectron.correctBoundaryConditions();
-		// Protons
-		potProton.correctBoundaryConditions();
-		// Hydrogen
-		wH2.correctBoundaryConditions();
-		// Water Vapour
-		wH2OVap.correctBoundaryConditions();
-		// Temperature
-		T.correctBoundaryConditions();
-		// Mixture Pressure
-		pMix.correctBoundaryConditions();
-		// Liquid Water Saturation
-		sLiq.correctBoundaryConditions();
-	}
-
-	forAll(PMEMRegions, zoneID)
-	{
-		#include "PMEMSetFields.H"
-		// Protons
-		potProton.correctBoundaryConditions();
-		// Temperature
-		T.correctBoundaryConditions();
-	}
-	
-	forAll(CCLRegions, zoneID)
-	{
-		#include "CCLSetFields.H"
-		// Electrons
-		potElectron.correctBoundaryConditions();
-		// Protons
-		potProton.correctBoundaryConditions();
-		// Oxygen
-		wO2.correctBoundaryConditions();
-		// Water Vapour
-		wH2OVap.correctBoundaryConditions();
-		// Temperature
-		T.correctBoundaryConditions();
-		// Mixture Pressure
-		pMix.correctBoundaryConditions();
-		// Liquid Water Saturation
-		sLiq.correctBoundaryConditions();
-	}
-
-	forAll(CPTLRegions, zoneID)
-	{
-		#include "CPTLSetFields.H"
-		// Electrons
-		potElectron.correctBoundaryConditions();
-		// Oxygen
-		wO2.correctBoundaryConditions();
-		// Water Vapour
-		wH2OVap.correctBoundaryConditions();
-		// Temperature
-		T.correctBoundaryConditions();
-		// Mixture Pressure
-		pMix.correctBoundaryConditions();
-		// Liquid Water Saturation
-		sLiq.correctBoundaryConditions();
-	}
+	// Correct Solved Boundary Conditions
+	#include "initCorrectSolvedBoundaryConditions.H"
 
 	// Write the initialization fields
-	#include initWriteSolvedFields.H
+	#include "initWriteSolvedFields.H"
 }
