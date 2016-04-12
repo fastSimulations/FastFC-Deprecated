@@ -3,3 +3,4 @@ lnInclude/
 *.dep
 *.swp
 .*.swp
+*.log
