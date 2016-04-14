@@ -1,0 +1,60 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 		$$
+refBVExchangeCurrent			refBVExchangeCurrent		[   0  -2   0   0   0   1   0 ]		4.5e-4;		// $$	Reference Exchange Current Density of Platinum wrt the Oxygen Reduction Reaction	[A/m^2 pt] 				$$  
+refBVO2Concentration			refBVO2Concentration		[   0  -3   0   0   1   0   0 ]		41.59;		// $$	Reference Oxygen Concentration at the which the exchange current was measured		[mol/m^3]				$$
+refBVTemperature				refBVTemperature			[   0  	0   0   1   0   0   0 ]		303.;		// $$	Reference Temperature at the which the exchange current was measured 				[K]						$$
+activationEnergyBV				activationEnergyBV			[   1   2  -2   0  -1   0   0 ]		76.3e3;		// $$	ORR reaction activation energy based on Arrehnius relationship 						[J/mol]					$$
+entropyChange					entropyChange				[   1   2  -1  -1  -1   0   0 ]		162.2;		// $$	ORR entropic heat release 															[J/(mol*K)]				$$
+platinumLoading					platinumLoading				[   1  -2   0   0   0   0   0 ]		4.08e-3;	// $$	Areal weight of platinum (i.e. Platinum Loading)									[kg/m_geom^2] 			$$
+particleRadiusPlatinum			particleRadiusPlatinum		[   0   1   0   0   0   0   0 ]		2.25e-9;	// $$	Average Platinum Particle Radius 													[m] 					$$
+utilizationFactor				utilizationFactor			[   0   0   0   0   0   0   0 ]		0.6;		// $$	Utilization coefficient of the total platinum surface area 							[-] 					$$
+symmetryFactorBV				symmetryFactorBV			[   0   0   0   0   0   0   0 ]		0.5525;		// $$	ORR reaction Symmetry Factor 														[-] 					$$
+oxygenReactionOrder				oxygenReactionOrder			[   0   0   0   0   0   0   0 ]		1.0;		// $$	ORR reaction order with respect to O2 species 										[-] 					$$
+numberElectronsBV				numberElectronsBV			[   0   0   0   0   0   0   0 ]		2.0;		// $$	ORR reaction, number of eletrons in the rate determining step					 	[-] 					$$
+densityCatalyst					densityCatalyst				[   1  -3   0   0   0   0   0 ]		21500.;		// $$	Catalyst (e.g. Platinum) material density 											[kg/m^3] 				$$
+densitySupport					densitySupport				[   1  -3   0   0   0   0   0 ]		2100.;		// $$	Support (e.g. Carbon) material density 												[kg/m^3] 				$$
+densityIonomer					densityIonomer				[   1  -3   0   0   0   0   0 ]		1980.;		// $$	Ionomeric (e.g. Nafion) material density on a dry basis								[kg/m^3] 				$$
+ratioPlatinumSupport			ratioPlatinumSupport		[   0   0   0   0   0   0   0 ]		0.5;		// $$	Platinum:support ratio (fraction of the catalyst powder that is platinum) 			[-] 					$$
+ratioCatalystIonomer			ratioCatalystIonomer		[   0   0   0   0   0   0   0 ]		0.23;		// $$	Ionomer:catalyst ratio (fraction of catalyst ink solids that are ionomer) 			[-] 					$$
+radiusAgglomerate				radiusAgglomerate			[   0   1   0   0   0   0   0 ]		2.e-7;		// $$	Average agglomerate radius 															[m] 					$$
+condElectronSupport				condElectronSupport			[  -1  -3   3   0   0   2   0 ]		2000.;		// $$	Support material electronic conductiivity 											[(A^2*s^3)/(kg*m^3)]	$$
+condProtonBase					condProtonBase				[  -1  -3   3   0   0   2   0 ]		100.;		// $$	Baseline proton conductivity as per Springer et al.									[S/m]					$$
+tortuositySupportX				tortuositySupportX			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the x-dir 											[-] 					$$
+tortuositySupportY				tortuositySupportY			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the y-dir 											[-] 					$$
+tortuositySupportZ				tortuositySupportZ			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the z-dir 											[-] 					$$
+tortuosityIonomerX				tortuosityIonomerX			[   0   0   0   0   0   0   0 ]		1.4;		// $$	Ionomeric material tortuosity in the x-dir 											[-] 					$$
+tortuosityIonomerY				tortuosityIonomerY			[   0   0   0   0   0   0   0 ]		1.4;		// $$	Ionomeric material tortuosity in the y-dir 											[-] 					$$
+tortuosityIonomerZ				tortuosityIonomerZ			[   0   0   0   0   0   0   0 ]		1.4;		// $$	Ionomeric material tortuosity in the z-dir 											[-] 					$$
+tortuosityPoreX					tortuosityPoreX				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the x-dir 													[-] 					$$
+tortuosityPoreY					tortuosityPoreY				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the y-dir 													[-]					 	$$
+tortuosityPoreZ					tortuosityPoreZ				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the z-dir 													[-] 					$$
+experimentECSA					experimentECSA				[   0   0   0   0   0   0   0 ]		149.;		// $$	Experimentally measured effective Pt surface area, only used if selected			[-] 					$$
+dryPermeabilityX				dryPermeabilityX			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the x-dir 															[m^2] 					$$
+dryPermeabilityY				dryPermeabilityY			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the y-dir 															[m^2] 					$$	
+dryPermeabilityZ				dryPermeabilityZ			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the z-dir 															[m^2] 					$$	
+doubleLayerCapacitance			doubleLayerCapacitance		[   0   0   0   0   0   0   0 ]		1.;			// $$	Double layer capacitance 															[F/m^3]					$$
+condThermalPlatinum				condThermalPlatinum			[   1   1  -3  -1   0   0   0 ]		0.1;		// $$	Thermal conductivity of catalyst material (e.g. Platinum)							[(kg*m)/(K*s^3)] 		$$
+condThermalSupport				condThermalSupport			[   1   1  -3  -1   0   0   0 ]		0.1;		// $$	Thermal conductivity of the support Material (e.g. Carbon)							[(kg*m)/(K*s^3)] 		$$
+condThermalIonomer				condThermalIonomer			[   1   1  -3  -1   0   0   0 ]		0.1;		// $$	Thermal conductivity of the ionomer on a dry basis (e.g. Nafion)					[(kg*m)/(K*s^3)] 		$$
+contactAngle					contactAngle				[   0   0   0   0   0   0   0 ]		110.;		// $$	Liquid water contact angle [degrees] 												[-] 					$$
+evaporationRate					evaporationRate				[  -1   1   1   0   0   0   0 ]		1.e-6;		// $$	Liquid water evaporation rate 														[1/Pa s]				$$
+condensationRate				condensationRate			[   0   0  -1   0   0   0   0 ]		1.e4;		// $$	Water vapour condensation rate 														[1/s] 					$$
+sCorrectOrderPerm				sCorrectOrderPerm			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Permeability							[-] 					$$
+sCorrectOrderDiff				sCorrectOrderDiff			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Diffusion								[-] 					$$
+// ************************************************************************************************************************************************************************ //

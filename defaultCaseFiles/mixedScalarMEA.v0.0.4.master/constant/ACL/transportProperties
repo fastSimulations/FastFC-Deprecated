@@ -1,0 +1,62 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 	$$
+refBVExchangeCurrent			refBVExchangeCurrent		[	0  -2   0   0   0   1   0 ]		4700.;		// $$	Ref. Exch. Current Density for the HOR using the Butler-Volmer Equation				[A/m^2 pt]			$$
+refBVTemperature				refBVTemperature			[   0  	0   0   1   0   0   0 ]		333.;		// $$	Reference Temperature at the which the exchange current was measured 				[K]					$$
+activationEnergyBV				activationEnergy			[	0   0   0   0   0   0   0 ]     1.00;		// $$	Activation energy correction (Arrhenius form) for the HOR using the BV-equation		[J/mol ]			$$
+symmetryFactorBV				symmetryFactorBV			[   0   0   0   0   0   0   0 ]		0.5;		// $$	Symmetry factor of the HOR reaction based on the single-step assumption in BV		[-]					$$
+numberElectronsBV				numberElectronsBV			[   0   0   0   0   0   0   0 ]		2.0;		// $$	Number of electrons transferred in the rate determining step for the BV model		[-]					$$
+refTVExchangeCurrent			refTVExchangeCurrent		[   0  -2   0   0   0   1   0 ]		4700.;		// $$	Ref. Exch. Current Density (HOR) of Pt for the Tafel-Volmer Pathway 				[A/m^2 pt] 			$$ 
+refHVExchangeCurrent			refHVExchangeCurrent		[   0  -2   0   0   0   1   0 ]		100.;		// $$	Ref. Exch. Current Density (HOR) of Pt for the Heyrovsky-Volmer Pathway 			[A/m^2 pt] 			$$ 
+refH2Concentration				refH2Concentration			[   0  -3   0   0   1   0   0 ]		0.59;		// $$	Ref. H2 Concentration at which the TV/HV or BV exchange currents were measured		[mol/m^3] 			$$
+entropyChangeHOR				entropyChangeHOR			[   1   2  -1  -1  -1   0   0 ] 	0.0;		// $$	HOR entropic heat release 															[J/(mol*K)] 		$$
+kappaTHV						kappaTHV					[   0   0   0   0   0   0   0 ]		1.2;		// $$	THV Model, fitted term from Chen & Kucernak, Change in adsorption along sweep 		[-]					$$
+platinumLoading					platinumLoading  			[   1  -2   0   0   0   0   0 ]		1.e-3;		// $$	Platinum Loading 																	[mg/cm_geom^2]		$$
+particleRadiusPlatinum			particleRadiusPlatinum		[   0   1   0   0   0   0   0 ]		2.25e-9;	// $$	Average Platinum Particle Radius 													[nm] 				$$
+utilizationFactor				utilizationFactor			[   0   0   0   0   0   0   0 ]		0.75;		// $$	Utilization coefficient of the total platinum surface area 							[-] 				$$
+experimentECSA					experimentECSA				[   0   0   0   0   0   0   0 ]		48.;		// $$	Exp. measured effective Pt surface area 											[m_pt^2/m_geom^2]	$$
+hydrogenReactionOrder			hydrogenReactionOrder		[   0   0   0   0   0   0   0 ]		1.0;		// $$	HOR reaction order with respect to H2 species 										[-] 				$$
+densityPlatinum					densityPlatinum				[   1  -3   0   0   0   0   0 ]		21500.;		// $$	Platinum material density (or catalyst material density) 							[kg/m^3] 			$$
+densitySupport					densitySupport				[   1  -3   0   0   0   0   0 ]		2100.;		// $$	Catalyst support material density 													[kg/m^3] 			$$
+densityIonomer					densityIonomer				[   1  -3   0   0   0   0   0 ]		1980.;		// $$	Ionomeric material density 															[kg/m^3] 			$$
+ratioPlatinumSupport			ratioPlatinumSupport		[   0   0   0   0   0   0   0 ]		0.5;		// $$	Platinum:support ratio (fraction of the catalyst powder that is platinum) 			[-] 				$$
+ratioCatalystIonomer			ratioCatalystIonomer		[   0   0   0   0   0   0   0 ]		0.23;		// $$	Ionomer:catalyst ratio (fraction of catalyst ink solids that are ionomer) 			[-] 				$$
+radiusAgglomerate				radiusAgglomerate			[   0   1   0   0   0   0   0 ]		1.e-7;		// $$	Average agglomerate radius 															[micrometers]		$$
+condElectronSupport				condElectronSupport			[  -1  -3   3   0   0   2   0 ]		2000.;		// $$	Support material electronic conductiivity 											[S/m] 				$$
+condProtonBase					condProtonBase				[  -1  -3   3   0   0   2   0 ]		100.;		// $$	Baseline proton conductivity as per Springer et al.									[S/m]				$$
+tortuositySupportX				tortuositySupportX			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the x-dir 											[-] 				$$
+tortuositySupportY				tortuositySupportY			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the y-dir 											[-] 				$$
+tortuositySupportZ				tortuositySupportZ			[   0   0   0   0   0   0   0 ]		1.65;		// $$	Support material tortuosity in the z-dir 											[-] 				$$
+tortuosityIonomerX				tortuosityIonomerX			[   0   0   0   0   0   0   0 ]		1.75;		// $$	Ionomeric material tortuosity in the x-dir 											[-] 				$$
+tortuosityIonomerY				tortuosityIonomerY			[   0   0   0   0   0   0   0 ]		1.75;		// $$	Ionomeric material tortuosity in the y-dir 											[-] 				$$
+tortuosityIonomerZ				tortuosityIonomerZ			[   0   0   0   0   0   0   0 ]		1.75;		// $$	Ionomeric material tortuosity in the z-dir 											[-] 				$$
+tortuosityPoreX					tortuosityPoreX				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the x-dir 													[-] 				$$
+tortuosityPoreY					tortuosityPoreY				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the y-dir 													[-] 				$$
+tortuosityPoreZ					tortuosityPoreZ				[   0   0   0   0   0   0   0 ]		10.;		// $$	Gas pore tortuosity in the z-dir 													[-] 				$$
+dryPermeabilityX				dryPermeabilityX			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the x-dir 															[m^2] 				$$
+dryPermeabilityY				dryPermeabilityY			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the y-dir 															[m^2] 				$$	
+dryPermeabilityZ				dryPermeabilityZ			[   0   2   0   0   0   0   0 ]		1.e-13;		// $$	Permeability in the z-dir 															[m^2] 				$$	
+doubleLayerCapacitance			doubleLayerCapacitance		[   0   0   0   0   0   0   0 ]		1.;			// $$	Double layer capacitance 															[TBD]				$$
+condThermalPlatinum				condThermalPlatinum			[   1   1  -3  -1   0   0   0 ]		100.;		// $$	Thermal conductivity of Platinum 													[(kg*m)/(K*s^3)] 	$$
+condThermalSupport				condThermalSupport			[   1   1  -3  -1   0   0   0 ]		0.1;		// $$	Thermal conductivity of the Support Material										[(kg*m)/(K*s^3)] 	$$
+contactAngle					contactAngle				[   0   0   0   0   0   0   0 ]		89.;		// $$	Liquid water contact angle [degrees] 												[-] 				$$
+evaporationRate					evaporationRate				[  -1   1   1   0   0   0   0 ]		1.e-6;		// $$	Liquid water evaporation rate 														[1/Pa s] 			$$
+condensationRate				condensationRate			[   0   0  -1   0   0   0   0 ]		1.e4;		// $$	Water vapour condensation rate 														[1/s] 				$$
+sCorrectOrderPerm				sCorrectOrderPerm			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Permeability							[-] 				$$
+sCorrectOrderDiff				sCorrectOrderDiff			[   0   0   0   0   0   0   0 ]		3.;			// $$	Liquid water tortuosity correction order for Diffusion								[-] 				$$
+// ************************************************************************************************************************************************************************ //

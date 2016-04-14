@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    potElectron
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+    wO2
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	wH2OVap
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	T
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	pMix
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	sLiq
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+}
+
+relaxationFactors
+{
+	fields
+	{
+//		potElectron		0.9;
+//		wO2				0.9;
+//		wH2OVap			0.9;
+//		T				0.95;
+//		pMix			0.95;
+//		sLiq			0.95;
+	}
+	equations
+	{
+	}
+}
+
+
+// ************************************************************************* //

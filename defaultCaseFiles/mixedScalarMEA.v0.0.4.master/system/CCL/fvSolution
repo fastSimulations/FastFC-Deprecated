@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    potElectron
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	potProton
+	{
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance		1e-150;
+		relTol			0;
+		maxIter			1;
+	}
+    wO2
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	wH2OVap
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	T
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	pMix
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+	sLiq
+    {
+		solver			PCG;
+		preconditioner	FDIC;
+		tolerance       1e-150;
+        relTol          0;
+		maxIter			1;
+    }
+}
+
+SIMPLE
+{
+    nNonOrthogonalCorrectors 0;
+}
+
+relaxationFactors
+{
+	fields
+	{
+//		potElectron			1e-6;
+//		potProton			1e-6;
+//		wO2					1e-6;
+//		wH2OVap				0.9;
+//		T					0.9;
+//		pMix				0.9;
+//		sLiq				0.9;
+	}
+	equations
+	{
+//		wO2					0.3;
+//		potElectron			0.3;
+//		potProton			0.3;
+	}
+}
+
+
+// ************************************************************************* //

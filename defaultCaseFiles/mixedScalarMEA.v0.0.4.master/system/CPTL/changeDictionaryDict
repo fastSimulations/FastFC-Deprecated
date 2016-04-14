@@ -1,0 +1,217 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dictionaryReplacement
+{
+    potElectron
+    {
+        internalField   uniform 1.16;
+
+        boundaryField
+        {
+            cathodeChannel
+            {
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/cellVoltage";
+				outOfBounds     clamp;
+            }
+	    	MEALeft
+	    	{
+  				type			empty;
+	    	}
+			MEARight
+			{
+				type			empty;
+			}
+			frontAndBack
+			{
+				type			empty;
+			}
+			CPTL_to_CCL
+			{
+				type				Fastfc::interiorConductionScalarScalar;
+				conductivityField	condElectronEff;
+			}
+        }
+    }
+
+	wO2
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            cathodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/cathode/massFractionOxygen";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            CPTL_to_CCL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  transportCoeffO2;
+			}
+        }
+    }
+
+	wH2OVap
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            cathodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/cathode/massFractionWaterVapour";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            CPTL_to_CCL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffH2OVap;
+			}
+        }
+    }
+
+	T
+    {
+        internalField   uniform 348;
+
+        boundaryField
+        {
+            cathodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/cathode/temperature";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            CPTL_to_CCL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  transportCoeffEnergy;
+			}
+        }
+    }
+
+	pMix
+    {
+        internalField   uniform 135798.786;
+
+        boundaryField
+        {
+            cathodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/cathode/wetPressure";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            CPTL_to_CCL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  dynamicPerm;
+			}
+        }
+    }
+
+	sLiq
+    {
+        internalField   uniform 0.;
+
+        boundaryField
+        {
+            cathodeChannel
+	    	{
+				type			fixedValue;
+				value			uniform 0.;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            CPTL_to_CCL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  diffH2OLiq;
+			}
+        }
+    }
+
+}
+
+// ************************************************************************* //

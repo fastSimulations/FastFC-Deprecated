@@ -1,0 +1,223 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      changeDictionaryDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dictionaryReplacement
+{
+    potElectron
+    {
+        internalField   uniform 0;
+
+        boundaryField
+        {
+            anodeChannel
+            {
+                type            fixedValue;
+				value			uniform 0.;
+            }
+	    	MEALeft
+	    	{
+  				type			empty;
+	    	}
+			MEARight
+			{
+				type			empty;
+			}
+			frontAndBack
+			{
+				type			empty;
+			}
+			APTL_to_ACL
+			{
+				type				Fastfc::interiorConductionScalarScalar;
+				conductivityField	condElectronEff;
+			}
+        }
+    }
+
+	wH2
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            anodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/anode/massFractionHydrogen";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            APTL_to_ACL
+            {
+                type				Fastfc::interiorAdvectionDiffusionScalarScalar;
+				diffusivityField	diffH2MixEff;
+			}
+        }
+    }
+
+	wH2OVap
+    {
+        internalField   uniform 0.1;
+
+        boundaryField
+        {
+            anodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/anode/massFractionWaterVapour";
+				outOfBounds     clamp;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            APTL_to_ACL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+				transportCoeff	transportCoeffH2OVap;
+			}
+        }
+    }
+
+	T
+    {
+        internalField   uniform 348;
+
+        boundaryField
+        {
+            anodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/anode/temperature";
+				outOfBounds     clamp;
+
+
+				//type			fixedValue;
+				//value			uniform 348.15;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            APTL_to_ACL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  transportCoeffEnergy;
+			}
+        }
+    }
+
+	pMix
+    {
+        internalField   uniform 135798.786;
+
+        boundaryField
+        {
+            anodeChannel
+	    	{
+				type            timeVaryingUniformFixedValue;
+    			fileName    	"$FOAM_CASE/operatingConditions/anode/wetPressure";
+				outOfBounds     clamp;
+
+				//type			fixedValue;
+				//value			uniform 135798.8;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            APTL_to_ACL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  dynamicPerm;
+			}
+        }
+    }
+
+	sLiq
+    {
+        internalField   uniform 0.;
+
+        boundaryField
+        {
+            anodeChannel
+	    	{
+				type			fixedValue;
+				value			uniform 0.;
+            }
+			MEALeft
+            {
+                type        	empty;
+            }
+
+	    	MEARight
+	    	{
+				type			empty;
+	    	}
+	    	frontAndBack
+	    	{
+  				type			empty;
+	    	}
+            APTL_to_ACL
+            {
+                type			Fastfc::interiorMixedScalarScalar;
+                transportCoeff  diffH2OLiq;
+			}
+        }
+    }
+
+}
+
+// ************************************************************************* //

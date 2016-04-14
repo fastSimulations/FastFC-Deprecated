@@ -1,0 +1,22 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //	
+// Template						Template					Units of Input Value				Value		Comments																					S.I. Units
+// Variable Name   				Variable Name				[ |kg|  m|  s|  K|mol|  A |cd|] 	value 		// $$	Description of variable 															[units]			 		$$
+condThermalIonomer				condThermalIonomer			[   1   1  -3  -1   0   0   0 ]		1.3;		// $$	Thermal conductivity of the ionomer on a dry basis (e.g. Nafion)					[(kg*m)/(K*s^3)] 		$$
+condProtonBase					condProtonBase				[  -1  -3   3   0   0   2   0 ]		100.;		// $$	Baseline proton conductivity as per Springer et al.									[S/m]					$$
+
+// ************************************************************************* //

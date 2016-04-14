@@ -1,0 +1,53 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     3.1                                |
+|   \\  /    A nd           | Web:         http://www.extend-project.de       |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fastControlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+maxSweep        500000;
+
+currentTolerance 0.0001;
+
+slopeStep       1e-15;
+
+electronRelaxFactor 0.99;
+
+protonRelaxFactor 0.99;
+
+oxygenRelaxFactor 0.99;
+
+hydrogenRelaxFactor 0.99;
+
+waterVapourRelaxFactor 0.99;
+
+solveOxygenTransport 1;
+
+solveHydrogenTransport 1;
+
+solveWaterVapourTransport 1;
+
+anodeKineticsTHV 1;
+
+anodeInputECSA  1;
+
+anodeSinglePhase 1;
+
+cathodeKineticsAgg 1;
+
+cathodeInputECSA 1;
+
+cathodeSinglePhase 1;
+
+
+// ************************************************************************* //
