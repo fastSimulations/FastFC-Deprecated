@@ -6,5 +6,6 @@ $(basicFvPatchFields)/interiorCoupledGeneric/interiorCoupledGenericFvPatchFields
 derivedFvPatchFields = fvPatchFields/derived
 $(derivedFvPatchFields)/interiorMixedScalarScalar/interiorScalarMixedFvPatchScalarField.C
 $(derivedFvPatchFields)/interiorConductionScalarScalar/interiorConductionScalarFvPatchScalarField.C
+$(derivedFvPatchFields)/interiorAdvectionDiffusionScalarScalar/interiorAdvectionDiffusionScalarFvPatchScalarField.C
 
 LIB = $(FOAM_USER_LIBBIN)/libFASTsrc
