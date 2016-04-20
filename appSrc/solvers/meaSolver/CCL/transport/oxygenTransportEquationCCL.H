@@ -56,29 +56,13 @@ Description
 	//	wO2.storePrevIter();
 	volScalarField wO2Old_ = wO2;
 
-	// Create fields and steps for the slope of the volumetric current with 
-	// oxygen concentration
-	dimensionedScalar stepSize_("stepSize_", dimensionSet(xO2.dimensions()), slopeStep);
-	volScalarField xO2Left_ = xO2 - stepSize_;
-	volScalarField xO2Right_ = xO2 + stepSize_;
-	xO2Left_ = Foam::max(xO2Left_, Foam::VSMALL);
-	volScalarField sourceVolOxygenLeft_(sourceMassO2);
-	volScalarField sourceVolOxygenRight_(sourceMassO2);
-	
-	// Compute the current and numerical first derivative	
-	#include <oxygenSourceSlopeCCL.H>
-
-	// Determine the slope
-	volScalarField dSdPhi_ = (sourceVolOxygenRight_ - sourceVolOxygenLeft_)
-					/(xO2Right_-xO2Left_);
-
 	// Adapt the transport coefficient 
 	transportCoeffO2 = densityMix*diffO2MixEff;	
 
 	// Set the Oxygen Sink/Source Source Term
 	#include <CCLOxygenSourceTermFields.H>
-	// Calculate the electron transport equation
-
+	
+	// Calculate the oxygen transport equation
 	fvScalarMatrix oxygenTransport
 	(
 	 //   fvm::ddt(wO2)

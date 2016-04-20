@@ -57,7 +57,6 @@ Description
 	//	wO2.storePrevIter();
 	volScalarField wO2Old_ = wO2;
 
-	// Adapt the transport coefficient 
 	transportCoeffO2 = densityMix*diffO2MixEff;
 
 	fvScalarMatrix oxygenTransport
@@ -69,9 +68,6 @@ Description
 	// Relax the Equation
 //	oxygenTransport.relax();
 
-	// Store the flux (may not be needed, TBD)
-//	protonicFlux = electronicTransport.flux();
-
 	// Solve the Matrix System
 	oxygenTransport.solve();
 
@@ -79,9 +75,6 @@ Description
 	scalar relax_ = relaxOxygen;
 	volScalarField deltaO2_ = wO2 - wO2Old_;
 	wO2 = wO2Old_ + deltaO2_*relax_;
-//	potElectron.relax();
-	// Correct the boundary conditions on the solved variable
-	wO2.correctBoundaryConditions();
 
 	// Minimization Check
 	{

@@ -212,7 +212,7 @@ void interiorConductionScalarFvPatchScalarField::updateCoeffs()
 			);
 
 	// Lookup and assign transport coefficient field values for the principal and neighbour patches
-	const fvPatchScalarField& pFieldK = 
+	const fvPatchScalarField& pFieldConductivity = 
 			refCast<const fvPatchScalarField>
 			(
 				patch().lookupPatchField<volScalarField, scalar>
@@ -221,7 +221,7 @@ void interiorConductionScalarFvPatchScalarField::updateCoeffs()
 				)
 			);
 
-	const fvPatchScalarField& nFieldK = 
+	const fvPatchScalarField& nFieldConductivity = 
 			refCast<const fvPatchScalarField>
 			(
 				neighbourPatch.lookupPatchField<volScalarField, scalar>
@@ -245,8 +245,8 @@ void interiorConductionScalarFvPatchScalarField::updateCoeffs()
     );
 
 	// transport coefficient
-	scalarField pIntFldK(pFieldK.patchInternalField());
-	scalarField nIntFldK(nFieldK.patchInternalField());
+	scalarField pIntFldConductivity(pFieldConductivity.patchInternalField());
+	scalarField nIntFldConductivity(nFieldConductivity.patchInternalField());
 
     mapDistribute::distribute
     (
@@ -255,7 +255,7 @@ void interiorConductionScalarFvPatchScalarField::updateCoeffs()
         distMap.constructSize(),
         distMap.subMap(),           // what to send
         distMap.constructMap(),     // what to receive
-        nIntFldK
+        nIntFldConductivity
     );
 
 	// Inverse cell spacing
@@ -272,21 +272,21 @@ void interiorConductionScalarFvPatchScalarField::updateCoeffs()
         nDelta
     );
 
-	// Check for zero or non-zero transport coefficient
-	pIntFldK = Foam::max(pIntFldK, SMALL);
-	nIntFldK = Foam::max(nIntFldK, SMALL);
-
 	// Apply a cell spacing based weighting on the conductivities
-	scalarField pKDelta(pIntFldK*pDelta);
-	scalarField nKDelta(nIntFldK*nDelta);
+	scalarField tauP(pIntFldConductivity*pDelta);
+	scalarField tauN(nIntFldConductivity*nDelta);
+
+	// Check for zero or non-zero transport coefficient
+	tauP = Foam::max(tauP, VSMALL);
+	tauN = Foam::max(tauN, VSMALL);
 
 	// Determine the flux at the boundary patch based on a weighted
 	// average of the principal and neighbour cells
 	this->nbrCellVal() = nIntFldPhi;
 
-	this->nbrCoeffVal() = (nKDelta  / (nKDelta + pKDelta));
+	this->ownerCoeffVal() = (tauP)  / (tauP + tauN);
 
-	this->ownerCoeffVal() = (pKDelta  / (nKDelta + pKDelta));
+	this->nbrCoeffVal() = (tauN)  / (tauP + tauN);
 
 	this->nbrDeltaCoeffVal() = nDelta;
 

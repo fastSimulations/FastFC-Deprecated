@@ -243,7 +243,7 @@ void interiorAdvectionDiffusionScalarFvPatchScalarField::updateCoeffs()
 	const fvPatchScalarField& nFieldDensityMix =
 			refCast<const fvPatchScalarField>
 			(
-				patch().lookupPatchField<volScalarField, scalar>
+				neighbourPatch.lookupPatchField<volScalarField, scalar>
 				(
 					"densityMix"
 				)
@@ -262,7 +262,7 @@ void interiorAdvectionDiffusionScalarFvPatchScalarField::updateCoeffs()
 	const fvPatchScalarField& nFieldVelocityAvgMix = 
 			refCast<const fvPatchScalarField>
 			(
-				patch().lookupPatchField<volScalarField, scalar>
+				neighbourPatch.lookupPatchField<volScalarField, scalar>
 				(
 					"velAvg"
 				)
