@@ -40,6 +40,9 @@ Developers
 // Determine the active area and electrode thicknesses
 #include "initElectrodeGeometry.H"
 
+// Setup the Open Circuit Voltage Variable
+#include "initOCV.H"
+
 // Setup the transport coefficients to dummy coefficients (for smooth initial guess)
 // This will be redundant on move to the new BC's
 #include "initTransportCoefficients.H"

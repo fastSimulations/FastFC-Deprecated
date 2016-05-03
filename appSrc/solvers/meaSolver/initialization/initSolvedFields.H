@@ -112,10 +112,200 @@ Developers
 		sLiqCathodeInit_ = gAverage(sLiqPatchField);
 	}
 
+	// Determine the Open Circuit Voltage
+	{
+
+		// Initialization of dimensionedScalars
+		dimensionedScalar equilibriumPotential_
+		(
+			"equilibriumPotential_",
+			dimensionSet(OCV.dimensions()),
+			1.189
+		);
+
+		dimensionedScalar oxideOCV_
+		(
+			"oxideOCV_",
+			dimensionSet(OCV.dimensions()),
+			0.066349
+		);
+
+		dimensionedScalar nernstOCV_
+		(
+			"nernstOCV_",
+			dimensionSet(OCV.dimensions()),
+			VSMALL
+		);
+
+		dimensionedScalar satPCoeff1_
+		(
+			"satPCoeff1_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			1.26837e-3
+		);
+
+		dimensionedScalar satPCoeff2_
+		(
+			"satPCoeff2_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			1.49827
+		);
+
+		dimensionedScalar satPCoeff3_
+		(
+			"satPCoeff3_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			6.70916e2
+		);
+
+		dimensionedScalar satPCoeff4_
+		(
+			"satPCoeff4_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			1.34832e5
+		);
+		
+		dimensionedScalar satPCoeff5_
+		(
+			"satPCoeff5_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			1.02503e7
+		);
+	
+		dimensionedScalar tempTempAnode_
+		(
+			"tempTempAnode_",
+			dimensionSet( 0, 0, 0, 1, 0, 0, 0),
+			TAnodeInit_
+		);
+
+		dimensionedScalar tempTempCathode_ 
+		(
+			"tempTempCathode_",
+			dimensionSet( 0, 0, 0, 1, 0, 0, 0),
+			TCathodeInit_
+		);
+ 
+		dimensionedScalar pMixWetAnode_
+		(
+			"pMixWetAnode_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			pMixAnodeInit_
+		);
+
+		dimensionedScalar pMixWetCathode_
+		(
+			"pMixWetCathode_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			pMixCathodeInit_
+		);
+
+		dimensionedScalar pSatAnode_ 
+		(
+			"pSatAnode_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			VSMALL	
+		);
+
+		dimensionedScalar pSatCathode_ 
+		(
+			"pSatCathode_",
+			dimensionSet(Fast::Constants::pStd.dimensions()),
+			VSMALL
+		);
+		
+		dimensionedScalar xH2AnodeInit_
+		(
+			"xH2AnodeInit_",
+			dimensionSet( 0, 0, 0, 0, 0, 0, 0),
+			VSMALL
+		);
+
+		dimensionedScalar xO2CathodeInit_
+		(
+			"xO2CathodeInit_",
+			dimensionSet( 0, 0, 0, 0, 0, 0, 0),
+			VSMALL
+		);
+		
+		scalar wN2AnodeInit_ = VSMALL;
+		scalar wN2CathodeInit_ = VSMALL;
+
+		// Assign Values to dimensioned and scalar fields
+		wN2AnodeInit_ = Foam::max((1. - wH2AnodeInit_ - wH2OVapAnodeInit_), VSMALL);
+		wN2CathodeInit_ = Foam::max((1. - wO2CathodeInit_ - wH2OVapCathodeInit_), VSMALL);
+
+		xH2AnodeInit_ = 
+			(wH2AnodeInit_/Fast::Constants::molWeightH2.value())/
+			(
+				(wH2AnodeInit_/Fast::Constants::molWeightH2.value())
+				+(wN2AnodeInit_/Fast::Constants::molWeightN2.value())
+				+(wH2OVapAnodeInit_/Fast::Constants::molWeightH2O.value())
+			);
+		
+		xO2CathodeInit_ =
+			(wO2CathodeInit_/Fast::Constants::molWeightO2.value())
+			/(
+				(wO2CathodeInit_/Fast::Constants::molWeightO2.value())
+				+(wN2CathodeInit_/Fast::Constants::molWeightN2.value())
+				+(wH2OVapCathodeInit_/Fast::Constants::molWeightH2O.value())
+			);
+
+		pSatAnode_ = 
+			(
+				satPCoeff1_*Foam::pow(TAnodeInit_,4.)-satPCoeff2_*Foam::pow(TAnodeInit_,3.)
+				+satPCoeff3_*Foam::pow(TAnodeInit_,2.)-satPCoeff4_*TAnodeInit_+satPCoeff5_
+			);
+
+		pSatCathode_ =
+			(
+				satPCoeff1_*Foam::pow(TCathodeInit_,4.)-satPCoeff2_*Foam::pow(TCathodeInit_,3.)
+				+satPCoeff3_*Foam::pow(TCathodeInit_,2.)-satPCoeff4_*TCathodeInit_+satPCoeff5_
+			);
+
+		// Measured Oxide effect on OCV in the DOE Program STC Hardware
+		
+		nernstOCV_ = equilibriumPotential_ +
+			(
+				(Fast::Constants::gasConstantR*(tempTempAnode_+tempTempCathode_)/2.)
+				/(2.*Fast::Constants::faraday)
+			)*Foam::log
+			(
+				(
+					(pMixWetAnode_*xH2AnodeInit_)/Fast::Constants::pStd
+				)*
+				Foam::pow
+				(
+					(
+						(pMixWetCathode_*xO2CathodeInit_)/Fast::Constants::pStd
+					),
+					0.5
+				)
+			);
+				
+
+		OCV = (nernstOCV_ - oxideOCV_);
+
+//		Info<< nl
+//			<<	tab << "Time = " << runTime.timeName() << nl
+//			<<	tab	<< "OCV must equal 1.11012229246918" << nl
+//			<<	tab	<< "Open Circuit Voltage = " << OCV.value() << nl
+//			<<	tab	<< "Nernst OCV = " << nernstOCV_.value() << nl
+//			<<	tab	<< "Nernst Oxide Effect = " << oxideOCV_.value() << nl
+//			<<	tab	<< "PmixWetAnode_ = " << pMixWetAnode_ << nl
+//			<<	tab	<< "pSatAnode_ = " << pSatAnode_ << nl
+//			<<	tab	<< "xH2AnodeInit_ = " << xH2AnodeInit_ << nl
+//			<<	tab	<< "pMixWetCathode_ = " << pMixWetCathode_ << nl
+//			<<	tab	<< "pSatCathode_ = " << pSatCathode_ << nl
+//			<<	tab	<< "xO2CathodeInit_ = " << xO2CathodeInit_ << nl
+//			<< endl;
+	}
+
 	// Output the Averaged Settings
 	{
 		Info<< nl
 			<<	tab << "Time = " << runTime.timeName() << nl
+			<<	tab	<< "Open Circuit Voltage = " << OCV.value() << nl
 			<<	tab << "Anode Operating Conditions" << nl
 			<<  tab << tab << "wH2 = " << wH2AnodeInit_ << nl
 			<<  tab << tab << "wH2OVap = " << wH2OVapAnodeInit_ << nl
