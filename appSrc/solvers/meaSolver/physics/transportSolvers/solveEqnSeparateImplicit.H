@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
@@ -50,85 +50,33 @@ Description
 	uses implicit descriptions for the source terms
 :
 \*---------------------------------------------------------------------------*/
-// Calculated the changing properties and fields
-forAll(APTLRegions, zoneID)
-{
-	#include <APTLSetFields.H>
-	#include <APTLGeneralFields.H>
-	#include <APTLCoefficientFields.H>
-}
-forAll(ACLRegions, zoneID)
-{
-	#include <ACLSetFields.H>
-	#include <ACLGeneralFields.H>
-	#include <ACLCoefficientFields.H>
-}
-forAll(PMEMRegions, zoneID)
-{
-	#include <PMEMSetFields.H>
-	#include <PMEMGetRelativeHumidity.H>
-	#include <PMEMGeneralFields.H>
-	#include <PMEMCoefficientFields.H>
-}
-forAll(CCLRegions, zoneID)
-{
-	#include <CCLSetFields.H>
-	#include <CCLGeneralFields.H>
-	#include <CCLCoefficientFields.H>
-}
-forAll(CPTLRegions, zoneID)
-{
-	#include <CPTLSetFields.H>
-	#include <CPTLGeneralFields.H>
-	#include <CPTLCoefficientFields.H>
-}
 
-// Solve Electrochemistry
-{
-	#include <sweepElectrochemistry.H>
-}
+// Calculate the fields and coefficients
+#include <updateFields.H>
+
 // Solve Hydrogen Transport
 if(1==solveHydrogen)
 {
 	#include <sweepHydrogenTransport.H>
 }
+
 // Solve Oxygen Transport
 if(1==solveOxygen)
 {
-	#include <sweepOxygenTransport.H>
+		#include <sweepOxygenTransport.H>
 }
+
 // Solve Water Vapour Transport and Phase Change (if activated)
 if(1==solveWaterVapour)
 {
 	#include <sweepWaterVapourTransport.H>
 }	
 
-// Solve Electrons and Protons
-{
-	// Electrons
-	#include <sweepElectronTransport.H>
-	// Protons
-	#include <sweepProtonTransport.H>
-}
+// Solve Electron Transport 
+#include <sweepElectronTransport.H>
+// Solve Proton Transport
+#include <sweepProtonTransport.H>
+// Electrochemistry
+#include <sweepElectrochemistry.H>
 
-// Solve Water Vapour Transport
-//if(1==solveWaterVapour)
-//{
-//	#include "sweepWaterVapourTransport.H"
-//}
-// Solve Mass Transport
-//if(1==solveMass)
-//{
-//	#include "sweepMassTransport.H"
-//}
-// Solve Energy Transport
-//if(1==solveEnergy)
-//{
-//	#include "sweepEnergyTransport.H"
-//}
-// 	Solve Liquid Water Transport
-//if(1==solveLiqWater)
-//{
-//	#include "sweepWaterLiquidTransport.H"
-//}
 // ************************************************************************* //
