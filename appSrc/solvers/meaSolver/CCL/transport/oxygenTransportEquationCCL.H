@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
@@ -52,12 +52,32 @@ Description
 :
 \*---------------------------------------------------------------------------*/
 {
-	// Request previous iteration to be stored
-	//	wO2.storePrevIter();
+	// Store value of previous iteration
 	volScalarField wO2Old_ = wO2;
 
 	// Adapt the transport coefficient 
 	transportCoeffO2 = densityMix*diffO2MixEff;	
+
+	// Create fields and steps for the slope of the volumetric current with proton potential
+	dimensionedScalar stepSize_("stepSize_", dimensionSet(xO2.dimensions()), slopeStep);
+	volScalarField wO2Left_ = wO2 - stepSize_;
+	volScalarField wO2Right_ = wO2 + stepSize_;
+	volScalarField wN2Left_ = 1. - wO2Left_ - wH2OVap;
+	volScalarField wN2Right_ = 1. - wO2Right_ - wH2OVap;
+	volScalarField xO2Left_ = (wO2Left_/Fast::Constants::molWeightO2)/((wO2Left_/Fast::Constants::molWeightO2)
+			+(wN2Left_/Fast::Constants::molWeightN2)+(wH2OVap/Fast::Constants::molWeightH2O));
+	volScalarField xO2Right_ = (wO2Right_/Fast::Constants::molWeightO2)/((wO2Right_/Fast::Constants::molWeightO2)
+			+(wN2Right_/Fast::Constants::molWeightN2)+(wH2OVap/Fast::Constants::molWeightH2O));
+
+	volScalarField sourceVolOxygenLeft_(sourceMassO2);
+	volScalarField sourceVolOxygenRight_(sourceMassO2);
+
+	// Compute the current and numerical first derivative
+	#include <oxygenSourceSlopeCCL.H>
+
+	// Determine the slope
+	volScalarField dSdPhi_ = (sourceVolOxygenRight_ - sourceVolOxygenLeft_)
+					/(wO2Right_-wO2Left_);
 
 	// Set the Oxygen Sink/Source Source Term
 	#include <CCLOxygenSourceTermFields.H>
@@ -66,14 +86,11 @@ Description
 	fvScalarMatrix oxygenTransport
 	(
 	 //   fvm::ddt(wO2)
-	    -fvm::laplacian(transportCoeffO2,wO2) //+ fvm::SuSp(dSdPhi_,wO2)
+	    -fvm::laplacian(transportCoeffO2,wO2) + fvm::SuSp(dSdPhi_,wO2)
 		== 
-		sourceMassO2 //+ dSdPhi_*wO2Old_
+		dSdPhi_*wO2Old_ + sourceMassO2
 	);
 	
-	// Relax the Equation
-//	oxygenTransport.relax();
-
 	// Solve the Matrix System
 	oxygenTransport.solve();
 
