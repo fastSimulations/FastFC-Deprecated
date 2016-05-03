@@ -51,73 +51,157 @@ Description
 :
 \*---------------------------------------------------------------------------*/
 // Calculated the changing properties and fields
+#include <updateFields.H>
+
 forAll(APTLRegions, zoneID)
 {
 	#include <APTLSetFields.H>
-	#include <APTLGeneralFields.H>
-	#include <APTLCoefficientFields.H>
 	if(1==solveHydrogen){
 		#include <hydrogenTransportEquationAPTL.H>
+		#include <APTLGeneralFields.H>
+		#include <APTLCoefficientFields.H>
 	}
 	if(1==solveWaterVapour){
 	  	#include <waterVapourTransportEquationAPTL.H>
+		#include <APTLGeneralFields.H>
+		#include <APTLCoefficientFields.H>
 	}
-  	#include <electronTransportEquationAPTL.H>
+	if(1==solveMass){
+		#include <massTransportEquationAPTL.H>
+		#include <APTLGeneralFields.H>
+		#include <APTLCoefficientFields.H>
+	}
+	// solve electron transport
+	{
+  		#include <electronTransportEquationAPTL.H>
+		#include <APTLGeneralFields.H>
+		#include <APTLCoefficientFields.H>
+	}
 }
 forAll(ACLRegions, zoneID)
 {
 	#include <ACLSetFields.H>
 	#include <ACLReadSIMPLEControls.H>
-	#include <ACLGeneralFields.H>
-	#include <ACLCoefficientFields.H>
 	#include <ACLElectrochemistryFields.H>
 	#include <currentSourceACL.H>
+
 	if(1==solveHydrogen){
 		#include <hydrogenTransportEquationACL.H>
+		#include <ACLGeneralFields.H>
+		#include <ACLCoefficientFields.H>
+		#include <ACLElectrochemistryFields.H>
+		#include <currentSourceACL.H>
 	}
+
 	if(1==solveWaterVapour){
 		#include <waterVapourTransportEquationACL.H>
+		#include <ACLGeneralFields.H>
+		#include <ACLCoefficientFields.H>
+		#include <ACLElectrochemistryFields.H>
+		#include <currentSourceACL.H>
 	}
-	#include <electronTransportEquationACL.H>
-	#include <protonTransportEquationACL.H>
+	if(1==solveMass){
+		#include <massTransportEquationACL.H>
+		#include <ACLGeneralFields.H>
+		#include <ACLCoefficientFields.H>
+		#include <ACLElectrochemistryFields.H>
+		#include <currentSourceACL.H>
+	}
+	// solve electron transport
+	{
+		#include <electronTransportEquationACL.H>
+		#include <ACLGeneralFields.H>
+		#include <ACLCoefficientFields.H>
+		#include <ACLElectrochemistryFields.H>
+		#include <currentSourceACL.H>
+	}
+	// solve proton transport	
+	{
+		#include <protonTransportEquationACL.H>
+		#include <ACLGeneralFields.H>
+		#include <ACLCoefficientFields.H>
+		#include <ACLElectrochemistryFields.H>
+		#include <currentSourceACL.H>
+	}
 }
 forAll(PMEMRegions, zoneID)
 {
 	#include <PMEMSetFields.H>
 	#include <PMEMReadSIMPLEControls.H>
 	#include <PMEMGetRelativeHumidity.H>
+	#include <protonTransportEquationPMEM.H>
 	#include <PMEMGeneralFields.H>
 	#include <PMEMCoefficientFields.H>
-	#include <protonTransportEquationPMEM.H>
 }
 forAll(CCLRegions, zoneID)
 {
 	#include <CCLSetFields.H>
 	#include <CCLReadSIMPLEControls.H>
-	#include <CCLGeneralFields.H>
-	#include <CCLCoefficientFields.H>
 	#include <CCLElectrochemistryFields.H>
 	#include <currentSourceCCL.H>
+
 	if(1==solveOxygen){
 		#include <oxygenTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
+		#include <CCLElectrochemistryFields.H>
+		#include <currentSourceCCL.H>
 	}
 	if(1==solveWaterVapour){
 	 	#include <waterVapourTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
+		#include <CCLElectrochemistryFields.H>
+		#include <currentSourceCCL.H>
 	}
- 	#include <electronTransportEquationCCL.H>
-	#include <protonTransportEquationCCL.H>
+	if(1==solveMass){
+		#include <massTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
+		#include <CCLElectrochemistryFields.H>
+		#include <currentSourceCCL.H>
+	}
+	// solve electron transport
+	{
+ 		#include <electronTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
+		#include <CCLElectrochemistryFields.H>
+		#include <currentSourceCCL.H>
+	}
+	// solve proton transport
+	{
+		#include <protonTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
+		#include <CCLElectrochemistryFields.H>
+		#include <currentSourceCCL.H>
+	}
+
 }
 forAll(CPTLRegions, zoneID)
 {
 	#include <CPTLSetFields.H>
-	#include <CPTLGeneralFields.H>
-	#include <CPTLCoefficientFields.H>
 	if(1==solveOxygen){
 		#include <oxygenTransportEquationCPTL.H>
+		#include <CPTLGeneralFields.H>
+		#include <CPTLCoefficientFields.H>
 	}
 	if(1==solveWaterVapour){
 		#include <waterVapourTransportEquationCPTL.H>
+		#include <CPTLGeneralFields.H>
+		#include <CPTLCoefficientFields.H>
 	}
-	#include <electronTransportEquationCPTL.H>
+	if(1==solveMass){
+		#include <massTransportEquationCPTL.H>
+		#include <CPTLGeneralFields.H>
+		#include <CPTLCoefficientFields.H>
+	}
+	// solve electron transport
+	{
+		#include <electronTransportEquationCPTL.H>
+		#include <CPTLGeneralFields.H>
+		#include <CPTLCoefficientFields.H>
+	}
 }
 // ************************************************************************* //
