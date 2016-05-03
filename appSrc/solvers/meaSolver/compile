@@ -1,3 +1,4 @@
 rmdepall
+rm -f log.compile > /dev/null
 wclean
-wmake -d > compile.log 3>&1
+wmake -d > log.compile 3>&1
