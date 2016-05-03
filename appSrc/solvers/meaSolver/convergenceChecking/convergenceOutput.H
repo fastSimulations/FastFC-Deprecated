@@ -17,6 +17,8 @@ forAll(ACLRegions, zoneID)
 
 	
 	cout<< "\n"
+		<< "Polarization point = " << runTime.timeName() 
+		<< "\n"
 		<< "***************************** Anode Electrode *****************************"
 		<< "\n"
 		<< std::left
