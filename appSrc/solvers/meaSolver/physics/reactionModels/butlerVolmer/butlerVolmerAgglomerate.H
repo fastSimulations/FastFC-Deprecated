@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
@@ -77,7 +77,8 @@ volScalarField butlerVolmerAgglomerate
 
 	// Set the dimensions and size equivalent to the field to be returned	
 	volScalarField volCurrentDensity_(returningField_);
-	
+	volScalarField unityField_(volCurrentDensity_);
+
 	dimensionedScalar unity_
 	(
 	 	"unity_",
@@ -85,20 +86,43 @@ volScalarField butlerVolmerAgglomerate
 		1.
 	);
 
-	dimensionedScalar chTransCoeffAnodic_= (nElectrons_*(unity_ - symmetryFactor_));
-	dimensionedScalar chTransCoeffCathodic_ = nElectrons_*(symmetryFactor_);
+	unityField_.dimensions().reset(unity_.dimensions());
+	unityField_ = unity_;
 
-	volScalarField exchCurrRefCorr_ = exchCurrBVRef_
+	volScalarField chTransCoeffAnodic_
+	(
+		"chTransCoeffAnodic_",
+		(nElectrons_*(unity_ - symmetryFactor_))*unityField_
+	);
+
+//	chTransCoeffAnodic_.write();
+	
+	volScalarField chTransCoeffCathodic_ 
+	(
+		"chTransCeoffCathodic_",
+		nElectrons_*(symmetryFactor_)*unityField_
+	);
+
+//	chTransCoeffCathodic_.write();
+
+	volScalarField exchCurrRefCorr_
+	(
+		"exchCurrRefCorr_", 
+		exchCurrBVRef_
 		*Foam::exp
 		(
 		 	(-1.*actEnergyBV_/Fast::Constants::gasConstantR)
 			*(
 			 	(1./T_)-(1./tempBVRef_)
 			)
-		);
+		)
+	);
 
+//	exchCurrRefCorr_.write();
 
-	volScalarField kCAgg_ = 
+	volScalarField kCAgg_
+	(
+			"kCAgg_",  
 			(
 			 	sAC_/
 				(
@@ -122,55 +146,54 @@ volScalarField butlerVolmerAgglomerate
 				 	(-chTransCoeffCathodic_*Fast::Constants::faraday*actPot_)/
 					(Fast::Constants::gasConstantR*T_)
 				)
-			);
-			
-	dimensionedScalar theileModulusCoeff_
-	(
-		"theileModulusCoeff_",
-   		dimensionSet(kCAgg_.dimensions()),
-		Foam::VSMALL
+			)
 	);
+	
+//	kCAgg_.write();
 
-	volScalarField theileModulus_ = (radiusAgg_/3.)*Foam::pow((Foam::mag(kCAgg_)/diffO2IonAgg_),0.5);
+	volScalarField theileModulus_
+	(
+		"theileModulus_",
+		(radiusAgg_/3.)*Foam::pow((Foam::mag(kCAgg_)/diffO2IonAgg_),0.5)
+	);
 
 	theileModulus_ = Foam::max(theileModulus_,1.e-5);
 
+//	theileModulus_.write();
 
-	volScalarField effectiveFactor_ = 
-			(
-			 	(
-				 	(1./theileModulus_)
-				)*
-			 	(
-				 	(1./Foam::tanh(3.*theileModulus_))
-					-(1./(3.*theileModulus_))
-				)
-			);
-
-	dimensionedScalar smallKCAGG_
+	volScalarField effectiveFactor_ 
 	(
-	 	"smallKCAGG_",
-		dimensionSet(kCAgg_.dimensions()),
-		Foam::VSMALL
+		"effectiveFactor_",
+		(
+			(
+			 	(1./theileModulus_)
+			)*
+		 	(
+			 	(1./Foam::tanh(3.*theileModulus_))
+				-(1./(3.*theileModulus_))
+			)
+		)
 	);
 
+//	effectiveFactor_.write();
+
 	volCurrentDensity_= -1.*(4.*Fast::Constants::faraday*(pMix_*xO2_/henrySolO2_))/
+	(
+	 	(
+		 	1./
 			(
-			 	(
-				 	1./
-					(
-					 	effectiveFactor_*Foam::mag((kCAgg_))*(1.-volFPore_)
-					)
-				)+
-				(
-				 	(
-					 	(radiusAgg_+tIonFilm_)*tIonFilm_
-					)/
-					(
-					 	sVAgg_*radiusAgg_*diffO2Ion_
-					)
-				)
-			);
+			 	effectiveFactor_*Foam::mag((kCAgg_))*(1.-volFPore_)
+			)
+		)+
+		(
+		 	(
+			 	(radiusAgg_+tIonFilm_)*tIonFilm_
+			)/
+			(
+			 	sVAgg_*radiusAgg_*diffO2Ion_
+			)
+		)
+	);
 
 	return volCurrentDensity_;
 }
