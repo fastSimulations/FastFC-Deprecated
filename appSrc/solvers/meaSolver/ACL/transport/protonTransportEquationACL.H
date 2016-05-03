@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
@@ -52,9 +52,7 @@ Description
 :
 \*---------------------------------------------------------------------------*/
 {
-	//  Protonic Transport
-	// Request previous iteration to be stored
-	// potElectron.storePrevIter();
+	// Store value from previous iteration
 	volScalarField potProtonOld_ = potProton;
 
 	// Create fields and steps for the slope of the volumetric current with proton potential
@@ -79,15 +77,11 @@ Description
 	fvScalarMatrix protonicTransport
 	(
 	 //   fvm::ddt(phi_e)
-	    -fvm::laplacian(condProtonEff,potProton) + fvm::SuSp(dSdPhi_,potProton)
+	    -fvm::laplacian(condProtonEff,potProton) + fvm::SuSp((dSdPhi_),potProton)
 		== 
 		dSdPhi_*potProtonOld_ + sourceProtonTotal 
 	);
 
-	// Relax the Equation
-//	protonicTransport.relax();
-	// Store the flux (may not be needed, TBD)
-//	protonicFlux = electronicTransport.flux();
 	// Solve the Matrix System
 	protonicTransport.solve();
 	// Relax the solved variable
