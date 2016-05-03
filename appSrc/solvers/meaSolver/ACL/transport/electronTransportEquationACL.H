@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
@@ -53,8 +53,7 @@ Description
 \*---------------------------------------------------------------------------*/
 {
 	//  Electronic Transport
-	// Request previous iteration to be stored
-	// potElectron.storePrevIter();
+	// Store value from pervious iteration
 	volScalarField potElectronOld_ = potElectron;
 
 	// Create fields and steps for the slope of the volumetric current with electron potential
@@ -84,17 +83,12 @@ Description
 		dSdPhi_*potElectronOld_ - sourceElectronTotal 
 	);
 
-	// Relax the Equation
-//	electronicTransport.relax();
-	// Store the flux (may not be needed, TBD)
-//	electronFlux = electronicTransport.flux();
 	// Solve the Matrix System
 	electronicTransport.solve();
 	// Relax the solved variable
 	scalar relax_ = relaxElectrons;
 	volScalarField deltaElectron_ = potElectron - potElectronOld_;
 	potElectron = potElectronOld_ + deltaElectron_*relax_;
-//	potElectron.relax();
 	// Correct the boundary conditions on the solved variable
 	potElectron.correctBoundaryConditions();
 }
