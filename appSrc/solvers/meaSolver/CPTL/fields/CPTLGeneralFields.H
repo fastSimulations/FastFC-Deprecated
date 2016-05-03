@@ -1,7 +1,56 @@
-// Start of New file
-//
-//
-// Calculated the Field Variables
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | foam-extend: Open Source CFD
+   \\    /   O peration     |
+    \\  /    A nd           | For copyright notice see file Copyright
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+    F ast           	    | FAST-FC: 
+	is the		            | The Open Source Analysis and Simulation Toolbox 
+    A nalysis and           | for Fuel Cells
+	S imulation		        |
+	Toolbox for		        | Copyright 2016, David B. Harvey
+	F uel                   |         
+	C ells                  |                     
+-------------------------------------------------------------------------------
+License
+	FAST-FC is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    FAST-FC is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+    for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with FAST-FC.  If not, see <http://www.gnu.org/licenses/>.
+
+	This file is part of foam-extend.
+
+    foam-extend is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the
+    Free Software Foundation, either version 3 of the License, or (at your
+    option) any later version.
+
+    foam-extend is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with foam-extend.  If not, see <http://www.gnu.org/licenses/>.
+
+Application
+    - CPTLGeneralFields.H
+
+Description
+	- Calculation of the general fields within the cathode porous transport
+	layer. 
+:
+\*---------------------------------------------------------------------------*/
+{
 	// Stored Gradients
 	{
 		pMixGrad = fvc::grad(pMix);
@@ -28,7 +77,7 @@
 			(
 				"wN2LowerLimit", 
 				dimensionSet(wN2.dimensions()), 
-				Foam::doubleScalarVSMALL
+				0.
 			)
 		);
 	}
@@ -71,6 +120,8 @@
 		molWeightMix = xO2*Fast::Constants::molWeightO2+xN2*Fast::Constants::molWeightN2
 					+xH2OVap*Fast::Constants::molWeightH2O;
 		densityMix = pMix*molWeightMix/(Fast::Constants::gasConstantR*T);
+		dimensionedScalar densityMixTemp("densityMixTemp", dimensionSet(densityMix.dimensions()), 1.225);
+
 		viscMix = xO2*viscO2+xN2*viscN2+xH2OVap*viscH2OVap;
 		velAvg = -kPermRelGas*pMixGrad.component(1)/viscMix;
 	}
@@ -128,3 +179,4 @@
 			swPhaseChangeLiqVap = (1)*(conditionAbove_)+(-1)*(conditionBelow_);
 		}
 	}
+}
