@@ -5,6 +5,8 @@
 		#include <CPTLSetFields.H>
 		#include <CPTLReadSIMPLEControls.H>
 		#include <oxygenTransportEquationCPTL.H>
+		#include <CPTLGeneralFields.H>
+		#include <CPTLCoefficientFields.H>
 	}
 
 	// Solve CCL
@@ -13,5 +15,7 @@
 		#include <CCLSetFields.H>
 		#include <CCLReadSIMPLEControls.H>
 		#include <oxygenTransportEquationCCL.H>
+		#include <CCLGeneralFields.H>
+		#include <CCLCoefficientFields.H>
 	}
 }
