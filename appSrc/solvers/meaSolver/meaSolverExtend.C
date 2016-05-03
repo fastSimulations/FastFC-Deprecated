@@ -85,9 +85,6 @@ int main(int argc, char *argv[])
 	
 	// Initialization of variables used in looping and convergence tracking - will move these out later
 	#include <initSolverLoopingVariables.H>
-	
-	// Setup OCV -- Should be moved to external calc rather than fixed here
-	dimensionedScalar OCV("OCV", dimensionSet( 1, 2, -3, 0, 0, -1, 0 ), 1.1101222924691811);
 
 	// Initialize variables for transport coefficients etc
 	#include <initMaster.H>
@@ -95,8 +92,10 @@ int main(int argc, char *argv[])
 	// Create polarization data file
 	{
 		std::ofstream polDat("polarizationData.txt");
-		polDat << "time" << ", " << "currentDensity" << ", " << "cellVoltage"; 
+		polDat << "currentDensity" << ", " << "cellVoltage"; 
 	}
+
+	int stepCounter = 0;
 	
 	while ( runTime.run())
 	{
@@ -108,33 +107,49 @@ int main(int argc, char *argv[])
 
 		Info<< "Polarization Point #" << runTime.timeName() << nl << endl;
 
-    	while 	(
-					(counter<int(maxSweep))
-					&&
-					(
-					 	(currentDensityDiff>currentTolerance)
-					 	||
-					 	((anodeCurrentDensity/cathodeCurrentDensity)>0.)
-					)
-				)
+    	while
+		(
+			(counter<int(maxSweep))
+			&&
+			(
+				(currentDensityDiff>currentTolerance)
+				||
+				((anodeCurrentDensity/cathodeCurrentDensity)>0.)
+			)
+		)
 		{
 			counter++;
 	
-			// Solve Equations	
-//			#include <solveEqnSeperateImplicit.H>
-			#include <solveEqnTogetherImplicit.H>
+			// Solve Equations
+			#include <solveEqnSeparateImplicit.H>
 
 			// Check Current and Charge Convergence
 			#include <convergenceOutput.H>
-		
-	    }
+		}
 
 		// Output Solution
-//		forAll(CCLRegions, zoneID)
-//		{
-//			#include <CCLSetFields.H>
-//			sourceVolCurrent.write();
-//		}
+		forAll(CCLRegions, zoneID)
+		{
+			#include <CCLSetFields.H>
+			//#include <CCLOutputFields.H>
+			volScalarField massFractionSum
+			(
+				"massFractionSum",
+				wO2 + wH2OVap + wN2
+			);
+
+			massFractionSum.write();
+		}
+		forAll(CPTLRegions, zoneID)
+		{
+			#include <CPTLSetFields.H>
+			volScalarField massFractionSum
+			(
+				"massFractionSum",
+				wO2 + wH2OVap + wN2
+			);
+		}
+	
 		runTime.write();	
 	
 		#include <voltageCurrent.H>
