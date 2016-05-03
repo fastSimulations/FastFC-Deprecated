@@ -9,7 +9,7 @@
 	is the		            | The Open Source Analysis and Simulation Toolbox 
     A nalysis and           | for Fuel Cells
 	S imulation		        |
-	Toolbox for		        | Copyright 2015, David B. Harvey
+	Toolbox for		        | Copyright 2016, David B. Harvey
 	F uel                   |         
 	C ells                  |                     
 -------------------------------------------------------------------------------
