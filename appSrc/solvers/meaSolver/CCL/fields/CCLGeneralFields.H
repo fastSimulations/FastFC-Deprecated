@@ -307,7 +307,7 @@ Description
 			scalar lowerRHBound_ = 0.04;
 			scalar schroedersSwitch_ = 0.999;
 			volScalarField RHTemp_ = RH;
-			RHTemp_ = Foam::min(RHTemp_,1.0);
+			RHTemp_ = Foam::min(RHTemp_,1.);
 			RHTemp_ = Foam::max(RHTemp_, lowerRHBound_);
 
 			H2ODissIon = ((0.043+17.81*RHTemp_-39.85*Foam::pow(RHTemp_,2.)+36*Foam::pow(RHTemp_,3.)));
