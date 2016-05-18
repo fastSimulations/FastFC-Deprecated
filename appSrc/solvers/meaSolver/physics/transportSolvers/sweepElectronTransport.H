@@ -33,21 +33,4 @@
 		#include <CPTLGeneralFields.H>
 		#include <CPTLCoefficientFields.H>
 	}
-	//Solve Anode
-	forAll(ACLRegions, zoneID)
-	{
-		#include <ACLSetFields.H>
- 		#include <ACLReadSIMPLEControls.H>
-		#include <electronTransportEquationACL.H>
-		#include <ACLGeneralFields.H>
-		#include <ACLCoefficientFields.H>
-	}
-	forAll(APTLRegions, zoneID)
-	{
-		#include <APTLSetFields.H>
-   		#include <APTLReadSIMPLEControls.H>
-  		#include <electronTransportEquationAPTL.H>
-		#include <APTLGeneralFields.H>
-		#include <APTLCoefficientFields.H>
-	}
 }
