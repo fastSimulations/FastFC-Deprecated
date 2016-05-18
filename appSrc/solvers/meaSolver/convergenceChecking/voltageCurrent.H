@@ -35,7 +35,7 @@
 	// Output the polarization curve
 	{
 		std::ofstream polDat("polarizationData.txt", std::ios_base::app);
-		polDat << nl << runTime.timeName() << ", " <<  cellCurrentDensity << ", " << cellVoltage;
+		polDat << nl << cellCurrentDensity << ", " << cellVoltage;
 	}
 	
 	// Output the current density
